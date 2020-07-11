@@ -39,10 +39,12 @@ jobs:
       - id: test
         run: |
           npm test
-      - id: echo_output_js
-        run: |
-          echo ${steps.test.outputs.value}
-
+      - id: echo_output_js_success
+        if: {{success()}}
+          echo "test is successfull"
+      - id: echo_output_js_failure
+        if: {{ failure() }}
+          echo "test is failed"
         #run: echo "::set-output name=test::world"
 #      - id: step_output
 #        run: __scripts__/hello-world.sh
