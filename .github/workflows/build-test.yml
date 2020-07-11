@@ -40,7 +40,7 @@ jobs:
       - id: test
         run: |
            OUTPUT= $(npm test)
-           echo "##[set-output name=output;]$(echo $OUTPUT"
+           echo "##[set-output name=output;]$(echo $OUTPUT)"
 
         #run: echo "::set-output name=test::world"
 #      - id: step_output
