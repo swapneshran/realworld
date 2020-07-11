@@ -34,13 +34,13 @@ jobs:
       - id: install
         run: |
           OUTPUT1= npm install
-          echo "##[::set-output name=install::$OUTPUT1]"
+          echo "##[set-output name=output;]$OUTPUT1"
         #run: echo "::set-output name=test::hello"
 #      - run: npm run build
       - id: test
         run: |
            OUTPUT= npm test
-           echo "##[::set-output name=test::$OUTPUT]"
+          echo "##[set-output name=output;]$OUTPUT"
 
         #run: echo "::set-output name=test::world"
 #      - id: step_output
