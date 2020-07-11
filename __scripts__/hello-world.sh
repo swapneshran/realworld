@@ -5,11 +5,11 @@
 echo "Hello World"
 echo "running npm install"
 
-npm install  | tee /tmp/install.txt
+npm install  | tee install.txt
 
 echo "printing the install script"
 
-cat /tmp/install.txt
+cat install.txt
 
 
 echo "printing the install script"
