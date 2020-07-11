@@ -32,9 +32,9 @@ jobs:
         with:
           node-version: 12.x
       - id: install
-        run:  |
-        OUTPUT= npm install
-        echo "::set-output name=install::$OUTPUT"
+        run: |
+          OUTPUT= npm install
+          echo "::set-output name=install::$OUTPUT"
         #run: echo "::set-output name=test::hello"
       - run: npm run build
       - id: test
