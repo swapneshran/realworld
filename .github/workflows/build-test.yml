@@ -36,15 +36,13 @@ jobs:
           npm install
         #run: echo "::set-output name=test::hello"
 #      - run: npm run build
-      - id: test
+
+      - name: run test
+        id: run_tests
         run: |
-          npm test
-      - id: echo_output_js_success
-        if: {{ success() }}
-        run: echo "test is successfull"
+          echo "::set-output name=mix-test::$(npm test)\n"
       - id: echo_output_js_failure
-        if: {{ failure() }}
-        run: echo "test is failed"
+        run: echo "${{join(steps.run_tests.outputs.*, '\n')}} "
         #run: echo "::set-output name=test::world"
 #      - id: step_output
 #        run: __scripts__/hello-world.sh
