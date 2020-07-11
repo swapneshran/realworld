@@ -31,10 +31,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      -name: Installing the packages
-       id: install
-      run: |
-        echo "::set-output name=mix-test::$(npm install)\n"
+      - name: Installing the packages
+        id: install
+        run: |
+          echo "::set-output name=mix-test::$(npm install)\n"
 #      - name: run test
 #        id: run_tests
 #        run: |
