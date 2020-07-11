@@ -9,7 +9,7 @@ npm install  | tee install.txt
 
 echo "printing the install script"
 
-cat install.txt
+echo "$(cat install.txt)"
 
 
 echo "printing the install script"
