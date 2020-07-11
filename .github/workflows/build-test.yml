@@ -39,7 +39,7 @@ jobs:
 #      - run: npm run build
       - id: test
         run: |
-           OUTPUT= $(npm test)
+           OUTPUT=$(npm test)
            echo "##[set-output name=output;]$(echo $OUTPUT)"
 
         #run: echo "::set-output name=test::world"
