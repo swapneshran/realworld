@@ -5,14 +5,19 @@
 echo "Hello World"
 echo "running npm install"
 
-npm_install= $(npm install)
-echo "$npm_install"
+npm install  | tee /tmp/install.txt
 
-echo "running test"
+echo "printing the install script"
 
-npm_test=$(npm test)
+cat /tmp/install.txt
 
-echo "$npm_test"
+
+echo "printing the install script"
+
+
+# echo "running test"
+
+# npm test
 
 # parse it using exit code, grep.
 
