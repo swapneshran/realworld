@@ -19,9 +19,6 @@ jobs:
   build:
     runs-on: ${{ matrix.operating-system }}
     continue-on-error: true
-    outputs:
-      output1: ${{ steps.install.outputs.install }}
-      output2: ${{ steps.test.outputs.test }}
     strategy:
       matrix:
         operating-system: [ubuntu-latest]
@@ -34,7 +31,7 @@ jobs:
       - name: Installing the packages
         id: install
         run: |
-          echo "::set-output name=mix-test::$(npm install)\n"
+          echo "::set-output name=mix-test::$(npm install) \n"
 #      - name: run test
 #        id: run_tests
 #        run: |
