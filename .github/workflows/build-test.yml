@@ -30,7 +30,7 @@ jobs:
           node-version: 12.x
       - name: Installing the packages
         run: |
-          echo "::set-output name=mix-test::$(npm install)"
+          echo "##[set-output name=output;]$(npm install --silent)""
         id: install
 #      - name: run test
 #        id: run_tests
@@ -38,7 +38,7 @@ jobs:
 #          echo "::set-output name=mix-test::$(npm test)\n"
       - name: echo failure outout
         run: |
-          echo "${{join(steps.install.outputs.*, '\n')}}"
+          echo "${{join(steps.install.outputs.install, '\n')}}"
         id: echo_output_js_failure
 
         #run: echo "::set-output name=test::world"
