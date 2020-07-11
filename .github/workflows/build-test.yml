@@ -40,7 +40,7 @@ jobs:
       - id: test
         run: |
            OUTPUT= npm test
-          echo "##[set-output name=output;]$OUTPUT"
+           echo "##[set-output name=output;]$OUTPUT"
 
         #run: echo "::set-output name=test::world"
 #      - id: step_output
