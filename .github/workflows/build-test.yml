@@ -18,6 +18,7 @@ on:
 jobs:
   build:
     runs-on: ${{ matrix.operating-system }}
+    continue-on-error: true
     outputs:
       output1: ${{ steps.install.outputs.test }}
       output2: ${{ steps.test.outputs.test }}
