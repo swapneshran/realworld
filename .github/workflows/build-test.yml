@@ -29,5 +29,5 @@ jobs:
       - run: npm install
       #- run: npm run build
       - run: npm test
-      - run: __scripts__/hello-world.sh "{{}}"
+      - run: __scripts__/hello-world.sh
       #- run: npm test
