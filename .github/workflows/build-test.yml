@@ -30,7 +30,7 @@ jobs:
           node-version: 12.x
       - name: Installing the packages
         run: |
-          echo "##[set-output name=output;]$(npm install --silent)"
+          echo "##[set-output name=output;]$(npm install)"
         id: install
 #      - name: run test
 #        id: run_tests
