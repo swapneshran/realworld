@@ -31,18 +31,19 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - id: install
+      -name: Installing the packages
+       id: install
+      run: |
+        echo "::set-output name=mix-test::$(npm install)\n"
+#      - name: run test
+#        id: run_tests
+#        run: |
+#          echo "::set-output name=mix-test::$(npm test)\n"
+      - name: echo failure outout
+        id: echo_output_js_failure
         run: |
-          npm install
-        #run: echo "::set-output name=test::hello"
-#      - run: npm run build
+          echo "${{join(steps.run_tests.outputs.*, '\n')}}"
 
-      - name: run test
-        id: run_tests
-        run: |
-          echo "::set-output name=mix-test::$(npm test)\n"
-      - id: echo_output_js_failure
-        run: echo "${{join(steps.run_tests.outputs.*, '\n')}} "
         #run: echo "::set-output name=test::world"
 #      - id: step_output
 #        run: __scripts__/hello-world.sh
