@@ -32,10 +32,12 @@ jobs:
         with:
           node-version: 12.x
       - id: install
-        run: npm install
+        #run: npm install
+        run: echo "::set-output name=test::hello"
       #- run: npm run build
       - id: test
-        run: npm test
+        #run: npm test
+        run: echo "::set-output name=test::world"
 #      - id: step_output
 #        run: __scripts__/hello-world.sh
       #- run: npm test
