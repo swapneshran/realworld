@@ -10,6 +10,7 @@ on:
   push:
     branches:
       - master
+      - feature/*
       - releases/*
     paths-ignore:
       - '**.md'
