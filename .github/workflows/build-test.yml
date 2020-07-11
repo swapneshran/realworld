@@ -28,17 +28,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Installing the packages
-        run: |
-          echo "##[set-output name=output;]$( npm install )"
-        id: install
+#      - name: Installing the packages
+#        run: |
+#          echo "##[set-output name=output;]$( npm install )"
+#        id: install
 #      - name: run test
 #        id: run_tests
 #        run: |
 #          echo "::set-output name=mix-test::$(npm test)\n"
-      - name: echo failure outout
+      - name: install and echo
         run: |
-          echo "${{join(steps.install.outputs.output, '\n')}}"
+          __scripts__/hello-world.sh
         id: echo_output_js_failure
 
         #run: echo "::set-output name=test::world"

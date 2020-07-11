@@ -3,7 +3,13 @@
 # pass the previous step output to script
 
 echo "Hello World"
-echo $1
+echo "running npm install"
+
+npm install
+
+echo "running test"
+
+npm test
 
 # parse it using exit code, grep.
 
