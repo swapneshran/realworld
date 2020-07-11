@@ -42,7 +42,7 @@ jobs:
       - name: echo failure outout
         id: echo_output_js_failure
         run: |
-          echo "${{join(steps.run_tests.outputs.*, '\n')}}"
+          echo "${{join(steps.install.outputs.*, '\n')}}"
 
         #run: echo "::set-output name=test::world"
 #      - id: step_output
