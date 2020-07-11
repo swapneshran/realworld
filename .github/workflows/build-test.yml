@@ -25,11 +25,5 @@ jobs:
           node-version: 12.x
       - run: npm install
       - run: npm run build
+      - run: __scripts__/hello-world.sh "${{ matrix.node-version }}"
       - run: npm test
-      - uses: actions/github-script@v2
-          id: set-result
-          with:
-            script: return "Hello!"
-            result-encoding: string
-      - name: Get result
-          run: echo "${{steps.set-result.outputs.result}}"
