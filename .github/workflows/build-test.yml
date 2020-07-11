@@ -41,7 +41,7 @@ jobs:
           npm test
       - id: echo_output_js
         run: |
-            echo ${steps.test.outputs.value}
+          echo ${steps.test.outputs.value}
 
         #run: echo "::set-output name=test::world"
 #      - id: step_output
