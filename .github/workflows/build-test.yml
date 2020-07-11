@@ -20,7 +20,7 @@ jobs:
     runs-on: ${{ matrix.operating-system }}
     continue-on-error: true
     outputs:
-      output1: ${{ steps.install.outputs.test }}
+      output1: ${{ steps.install.outputs.install }}
       output2: ${{ steps.test.outputs.test }}
     strategy:
       matrix:
@@ -34,13 +34,13 @@ jobs:
       - id: install
         run: |
           OUTPUT1=$(npm install)
-          echo "##[set-output name=test;]$(echo $OUTPUT1)"
+          echo "::set-output name=install::$OUTPUT1"
         #run: echo "::set-output name=test::hello"
 #      - run: npm run build
-#      - id: test
-#        run: |
-#           OUTPUT=$(npm test)
-#           echo "##[set-output name=output;]$(echo $OUTPUT)"
+      - id: test
+        run: |
+           OUTPUT=$(npm test)
+           echo "::set-output name=test::$OUTPUT"
 
         #run: echo "::set-output name=test::world"
 #      - id: step_output
