@@ -4,6 +4,9 @@ on:
   pull_request:
     paths-ignore:
       - '**.md'
+    branches:
+      - feature/*
+      - bugfix/*
   push:
     branches:
       - master
@@ -23,7 +26,8 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-#      - run: npm install
-#      - run: npm run build
-      - run: __scripts__/hello-world.sh "${{ matrix.node-version }}"
-#      - run: npm test
+      - run: npm install
+      #- run: npm run build
+      - run: npm test
+      - run: __scripts__/hello-world.sh "{{}}"
+      #- run: npm test
