@@ -55,6 +55,7 @@ jobs:
               pwd
             fi
         id: build
+
       - uses: ./
         name: show_out put
         id: file_read
@@ -75,6 +76,11 @@ jobs:
           echo $SHA_ID
           echo "Log url is"
           echo "https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$GITHUB_RUN_ID/logs"
+          curl "https://api.github.com/repos/swapneshran/realworld/actions/runs/$GITHUB_RUN_ID/logs" \
+             -H 'Authorization: tokenw ${{ secrets.GITHUB_TOKEN }}' \
+              -o logs.zip
+          # unzip the tar and read it
+          ls -ltra
         env:
            TEXT: ${{ steps.file_read.outputs.text }}
         if: always()
