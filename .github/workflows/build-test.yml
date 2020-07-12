@@ -63,32 +63,32 @@ jobs:
 #          path: log.txt
 #        if: always()
   log_out_put:
-    - runs-on: ${{ matrix.operating-system }}
-    - continue-on-error: true
-    steps:
-      - uses: actions/checkout@v2
-      - run: |
-          echo "RUNID: $GITHUB_RUN_ID"
-          echo "ACTION_ID: $GITHUB_ACTION"
-          echo "$GITHUB_TOKEN"
-          echo "RUN NUMBER: $GITHUB_RUN_NUMBER"
-          echo $TEXT
-          SHA_ID=$(curl -X  GET \
-            https://api.github.com/repos/swapneshran/realworld/actions/runs \
-            -H 'Authorization: tokenw ${{ secrets.GITHUB_TOKEN }}' \
-            -H "Accept: application/vnd.github.v3+json" \
-             | jq '.workflow_runs[0].head_sha')
-          echo $SHA_ID
-          echo "Log url is"
-          echo "https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$GITHUB_RUN_ID/logs"
-          curl "https://api.github.com/repos/swapneshran/realworld/actions/runs/$GITHUB_RUN_ID/logs" \
-             -H 'Authorization: tokenw ${{ secrets.GITHUB_TOKEN }}' \
-              -o logs.zip
-          # unzip the tar and read it
-          ls -ltra
-#        env:
-#          TEXT: ${{ steps.file_read.outputs.text }}
-        if: always()
+      runs-on: ${{ matrix.operating-system }}
+      continue-on-error: true
+      steps:
+        - uses: actions/checkout@v2
+        - run: |
+            echo "RUNID: $GITHUB_RUN_ID"
+            echo "ACTION_ID: $GITHUB_ACTION"
+            echo "$GITHUB_TOKEN"
+            echo "RUN NUMBER: $GITHUB_RUN_NUMBER"
+            echo $TEXT
+            SHA_ID=$(curl -X  GET \
+              https://api.github.com/repos/swapneshran/realworld/actions/runs \
+              -H 'Authorization: tokenw ${{ secrets.GITHUB_TOKEN }}' \
+              -H "Accept: application/vnd.github.v3+json" \
+               | jq '.workflow_runs[0].head_sha')
+            echo $SHA_ID
+            echo "Log url is"
+            echo "https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$GITHUB_RUN_ID/logs"
+            curl "https://api.github.com/repos/swapneshran/realworld/actions/runs/$GITHUB_RUN_ID/logs" \
+               -H 'Authorization: tokenw ${{ secrets.GITHUB_TOKEN }}' \
+                -o logs.zip
+            # unzip the tar and read it
+            ls -ltra
+  #        env:
+  #          TEXT: ${{ steps.file_read.outputs.text }}
+          if: always()
 
 
 
