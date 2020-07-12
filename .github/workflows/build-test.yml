@@ -69,7 +69,7 @@ jobs:
             https://api.github.com/repos/swapneshran/realworld/actions/runs \
             -H 'Authorization: tokenw ${{ secrets.GITHUB_TOKEN }}' \
             -H "Accept: application/vnd.github.v3+json" \
-           | jq '.workflow_runs[0].head_sha)'
+             | jq '.workflow_runs[0].head_sha')
           echo "$SHA_ID"
         env:
            TEXT: ${{ steps.file_read.outputs.text }}
