@@ -43,12 +43,12 @@ jobs:
 
       - uses: ./
         name: show_out put
+        id: show_out
         with:
           path: log.txt
-        id: file_read
       - run: echo $TEXT
         env:
-          TEXT: ${{ steps.echo_output_js_failure.outputs.text }}
+          TEXT: ${{ steps.file_read.outputs.text }}
 
         #run: echo "::set-output name=test::world"
 #      - id: step_output
