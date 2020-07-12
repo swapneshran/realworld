@@ -36,6 +36,39 @@ jobs:
 #        id: run_tests
 #        run: |
 #          echo "::set-output name=mix-test::$(npm test)\n"
+
+      - name: forming log url
+        id: log_url
+        run: |
+          echo "getting Log URL"
+          echo "ACTION_ID: $GITHUB_ACTION"
+          echo $GITHUB_RUN_ID
+
+
+          echo "getting Log URL"
+          SHA_ID=$(curl -X  GET \
+                            https://api.github.com/repos/swapneshran/realworld/actions/runs \
+                            -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+                            -H "Accept: application/vnd.github.v3+json" \
+                            | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
+  )
+          SHA_ID2=$(curl -X  GET \
+                             https://api.github.com/repos/swapneshran/realworld/commits/$SHA_ID/check-runs\
+                             -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+                             -H "Accept: application/vnd.github.antiope-preview+json" \
+                              | jq '.check_runs[0].id')
+
+          LOG_URL=("https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs")
+          echo $LOG_URL
+          echo "Check suite id is $SHA_ID2"
+          LOG_URL=("https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs")
+          echo "##[set-output name=log_url;]$LOG_URL"
+
+
+        # unzip the tar and read it
+
+        env:
+          TEXT: ${{ steps.file_read.outputs.text }}
       - name: install and echo
         run: |
           npm install $@ >> log.txt
@@ -55,41 +88,6 @@ jobs:
               pwd
             fi
         id: build
-
-      - name: forming log url
-        id: log_url
-        run: |
-          echo "getting Log URL"
-          echo "ACTION_ID: $GITHUB_ACTION"
-          echo "$GITHUB_TOKEN"
-
-          echo "Check suite id is $SHA_ID2"
-          LOG_URL=("https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs")
-          echo $LOG_URL
-          echo "##[set-output name=log_url;]$LOG_URL"
-
-          echo "getting Log URL"
-          SHA_ID=$(curl -X  GET \
-                            https://api.github.com/repos/swapneshran/realworld/actions/runs \
-                            -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                            -H "Accept: application/vnd.github.v3+json" \
-                            | jq '.workflow_runs[0].head_sha')
-          SHA_ID2=$(curl -X  GET \
-                             https://api.github.com/repos/swapneshran/realworld/commits/$SHA_ID/check-runs\
-                             -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                             -H "Accept: application/vnd.github.antiope-preview+json" \
-                              | jq '.check_runs[0].id')
-
-
-          LOG_URL=("https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs")
-
-          echo $LOG_URL
-
-
-        # unzip the tar and read it
-
-        env:
-           TEXT: ${{ steps.file_read.outputs.text }}
         if: always()
       - name: printing
         id: log_url_print
