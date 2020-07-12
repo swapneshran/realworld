@@ -63,7 +63,7 @@ jobs:
         if: always()
       - run: |
           echo "$GITHUB_RUN_ID"
-          echo "GITHUB_TOKEN"
+          echo "$GITHUB_TOKEN"
           echo $TEXT
           curl google.com
           curl -X  GET \
