@@ -59,10 +59,6 @@ jobs:
       - name: forming log url
         id: log_url
         run: ./__scripts__/hello-world.sh
-
-
-        # unzip the tar and read it
-
         env:
            TEXT: ${{ steps.file_read.outputs.text }}
         if: always()
