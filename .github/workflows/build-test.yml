@@ -55,19 +55,15 @@ jobs:
               pwd
             fi
         id: build
-
-  publish_to_teams:
-      runs-on: ubuntu-latest
-      continue-on-error: true
-      steps:
-        - uses: actions/checkout@v2
-        - uses: ./
+      - uses: ./
           name: show_out put
           id: file_read
           with:
             path: log.txt
-        - run: |
-            echo $TEXT
-            curl google.com
-          env:
-            TEXT: ${{ steps.file_read.outputs.text }}
+      - run: |
+          echo $TEXT
+          curl google.com
+        env:
+           TEXT: ${{ steps.file_read.outputs.text }}
+
+
