@@ -62,7 +62,8 @@ jobs:
           echo $LOG_URL
           echo "Check suite id is $SHA_ID2"
           LOG_URL=("https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs")
-          echo "Branch name $GITHUB_REF"
+          BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\// /g')
+           echo "Branch name $BRANCH_NAME"
           echo "##[set-output name=log_url;]$LOG_URL"
           echo "##[set-output name=branch;]$GITHUB_REF"
 
