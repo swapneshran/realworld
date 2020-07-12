@@ -38,7 +38,7 @@ jobs:
 #          echo "::set-output name=mix-test::$(npm test)\n"
       - name: install and echo
         run: |
-          npm install $@ | tee lox.txt
+          npm install $@ | tee log.txt
           if [  ${PIPESTATUS[0]} -gt 0 ]
             then
               exit 1
@@ -48,7 +48,7 @@ jobs:
 
       - name: build
         run: |
-            npm run build $@ | tee lox.txt
+            npm run build $@ | tee log.txt
             if [  ${PIPESTATUS[0]} -gt 0 ]
               then
                 exit 1
@@ -56,15 +56,16 @@ jobs:
             fi
         id: build
 
-      - uses: ./
-        continue-on-error: true
+  publish_to_teams:
+    - continue-on-error: true
+    - uses: ./
         name: show_out put
         id: file_read
         with:
           path: log.txt
-      - run: |
-          echo $TEXT
-          curl google.com
-        env:
-          TEXT: ${{ steps.file_read.outputs.text }}
-        continue-on-error: true
+    - run: |
+        echo $TEXT
+        curl google.com
+      env:
+        TEXT: ${{ steps.file_read.outputs.text }}
+      continue-on-error: true
