@@ -42,7 +42,7 @@ jobs:
         run: |
           echo "getting Log URL"
           echo "ACTION_ID: $GITHUB_ACTION"
-          echo $GITHUB_RUN_ID
+          echo "$GITHUB_TOKEN"
 
 
           echo "getting Log URL"
@@ -50,8 +50,8 @@ jobs:
                             https://api.github.com/repos/swapneshran/realworld/actions/runs \
                             -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
                             -H "Accept: application/vnd.github.v3+json" \
-                            | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
-  )
+                            | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha'  \
+                            | sed 's/"//g')
           SHA_ID2=$(curl -X  GET \
                              https://api.github.com/repos/swapneshran/realworld/commits/$SHA_ID/check-runs\
                              -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
