@@ -18,10 +18,9 @@ echo "printing the install script"
 ls -ltra
 
 
-
 echo "printing the install script"
 
-
+rm -f log.txt
 # echo "running test"
 
 # npm test
