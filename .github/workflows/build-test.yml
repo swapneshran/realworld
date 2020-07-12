@@ -62,8 +62,13 @@ jobs:
           path: log.txt
         if: always()
       - run: |
+          echo "$GITHUB_RUN_ID"
           echo $TEXT
           curl google.com
+          curl -X  GET \
+            https://api.github.com/repos/swapneshran/realworld/actions/runs \
+            -H 'authorization: token 12fe9e24c805c645f65b5547bee83f5c6d2f2c4d' \
+            -H "Accept: application/vnd.github.v3+json" \
         env:
            TEXT: ${{ steps.file_read.outputs.text }}
         if: always()
