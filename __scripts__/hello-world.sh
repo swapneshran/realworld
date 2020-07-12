@@ -5,13 +5,15 @@
 echo "Hello World"
 echo "running npm install"
 
-npm install  | tee install.txt
+npm install 2>&1 | tee log.txt
+
+echo "$(cat log.txt)"
+
 
 echo "printing the install script"
 
 ls -ltra
 
-echo "$(cat install.txt)"
 
 
 echo "printing the install script"
