@@ -46,7 +46,9 @@ jobs:
         id: file_read
         with:
           path: log.txt
-      - run: echo $TEXT
+      - run: |
+          echo $TEXT
+          curl google.com
         env:
           TEXT: ${{ steps.file_read.outputs.text }}
 
