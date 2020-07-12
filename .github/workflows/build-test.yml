@@ -62,7 +62,9 @@ jobs:
           echo $LOG_URL
           echo "Check suite id is $SHA_ID2"
           LOG_URL=("https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs")
+          echo "Branch name $GITHUB_REF"
           echo "##[set-output name=log_url;]$LOG_URL"
+          echo "##[set-output name=branch;]$GITHUB_REF"
 
 
         # unzip the tar and read it
@@ -93,8 +95,10 @@ jobs:
         id: log_url_print
         run: |
             echo "Log URL is : $LOG_URL"
+            echo "branch name is $BRANCH_NAME"
         env:
             LOG_URL: ${{ steps.log_url.outputs.log_url }}
+            BRANCH_NAME: ${{}}
         if: always()
 
 
