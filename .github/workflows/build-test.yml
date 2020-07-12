@@ -51,14 +51,3 @@ jobs:
           curl google.com
         env:
           TEXT: ${{ steps.file_read.outputs.text }}
-
-        #run: echo "::set-output name=test::world"
-#      - id: step_output
-#        run: __scripts__/hello-world.sh
-      #- run: npm test
-#  send_to_teams:
-#    runs-on: ubuntu-latest
-#    needs: build
-#    steps:
-#      - run: echo ${{needs.build.outputs.output1}} ${{needs.build.outputs.output2}}
-      #- run: __scripts__/hello-world.sh  ${{needs.build.outputs.output1}}
