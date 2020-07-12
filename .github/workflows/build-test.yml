@@ -57,8 +57,9 @@ jobs:
         id: build
 
   publish_to_teams:
-    - continue-on-error: true
-    - uses: ./
+      runs-on: ubuntu-latest
+      continue-on-error: true
+      uses: ./
       name: show_out put
       id: file_read
       with:
