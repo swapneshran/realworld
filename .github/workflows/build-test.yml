@@ -59,9 +59,9 @@ jobs:
   publish_to_teams:
     - continue-on-error: true
     - uses: ./
-        name: show_out put
-        id: file_read
-        with:
+      name: show_out put
+      id: file_read
+      with:
           path: log.txt
     - run: |
         echo $TEXT
