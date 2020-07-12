@@ -16,7 +16,7 @@ echo "printing the install script"
 
 echo "printing the install script"
 
-echo "running test"
+echo "running build"
 
-npm test | tee -a log.txt
+npm run build | tee -a log.txt
 
