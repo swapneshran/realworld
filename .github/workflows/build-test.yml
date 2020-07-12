@@ -69,27 +69,18 @@ jobs:
           echo "$GITHUB_TOKEN"
           echo "RUN NUMBER: $GITHUB_RUN_NUMBER"
           echo $TEXT
-#          SHA_ID=$(curl -X  GET \
-#            https://api.github.com/repos/swapneshran/realworld/actions/runs \
-#            -H 'Authorization: tokenw ${{ secrets.GITHUB_TOKEN }}' \
-#            -H "Accept: application/vnd.github.v3+json" \
-#             | jq '.workflow_runs[0].head_sha')
-#          echo $SHA_ID
-#          echo "Log url is"
-#          echo "https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$GITHUB_RUN_ID/logs"
           SHA_ID=$(curl -X  GET \
           https://api.github.com/repos/swapneshran/realworld/actions/runs \
-          -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-            -H "Accept: application/vnd.github.v3+json" \
+             -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+             -H "Accept: application/vnd.github.v3+json" \
               | jq '.workflow_runs[0].head_sha') \
               | sed 's/"//g'
 
           echo "SHA ID is $SHA_ID"
-
           CHECK_RUN_ID=$(curl -X  GET \
           https://api.github.com/repos/swapneshran/realworld/commits/$SHA_ID/check-runs \
-          -H 'Authorization: tokenw ${{ secrets.GITHUB_TOKEN }}' \
-           -H "Accept: application/vnd.github.v3+json" \
+             -H 'Authorization: tokenw ${{ secrets.GITHUB_TOKEN }}' \
+             -H "Accept: application/vnd.github.v3+json" \
               | jq '.check_runs[0].id') \
               | sed 's/"//g'
 
