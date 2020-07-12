@@ -5,12 +5,12 @@
 echo "Hello World"
 echo "running npm install --silent"
 
-npm install 2>&1 | tee log.txt
+npm install 2>&1 | tee -a log.txt
 
 
 echo "printing the install script"
 
-echo "$(cat log.txt)"
+cat log.txt
 
 
 echo "printing the install script"
