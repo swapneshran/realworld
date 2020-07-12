@@ -63,10 +63,9 @@ jobs:
       name: show_out put
       id: file_read
       with:
-          path: log.txt
+        path: log.txt
     - run: |
         echo $TEXT
         curl google.com
       env:
         TEXT: ${{ steps.file_read.outputs.text }}
-      continue-on-error: true
