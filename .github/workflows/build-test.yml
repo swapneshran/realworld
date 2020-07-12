@@ -71,6 +71,8 @@ jobs:
             -H "Accept: application/vnd.github.v3+json" \
              | jq '.workflow_runs[0].head_sha')
           echo $SHA_ID
+          echo "Log url is"
+          echo "https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$GITHUB_RUN_ID/logs"
         env:
            TEXT: ${{ steps.file_read.outputs.text }}
         if: always()
