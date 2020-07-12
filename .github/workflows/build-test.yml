@@ -63,11 +63,12 @@ jobs:
         if: always()
       - run: |
           echo "$GITHUB_RUN_ID"
+          echo "GITHUB_TOKEN"
           echo $TEXT
           curl google.com
           curl -X  GET \
             https://api.github.com/repos/swapneshran/realworld/actions/runs \
-            -H 'authorization: token 12fe9e24c805c645f65b5547bee83f5c6d2f2c4d' \
+            -H 'authorization: token $GITHUB_TOKEN' \
             -H "Accept: application/vnd.github.v3+json" \
         env:
            TEXT: ${{ steps.file_read.outputs.text }}
