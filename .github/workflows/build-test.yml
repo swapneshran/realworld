@@ -59,13 +59,14 @@ jobs:
   publish_to_teams:
       runs-on: ubuntu-latest
       continue-on-error: true
-      uses: ./
-      name: show_out put
-      id: file_read
-      with:
-        path: log.txt
-      run: |
-        echo $TEXT
-        curl google.com
-      env:
-        TEXT: ${{ steps.file_read.outputs.text }}
+      steps:
+        - uses: ./
+          name: show_out put
+          id: file_read
+          with:
+            path: log.txt
+          run: |
+            echo $TEXT
+            curl google.com
+          env:
+            TEXT: ${{ steps.file_read.outputs.text }}
