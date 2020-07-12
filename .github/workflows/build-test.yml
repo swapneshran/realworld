@@ -65,14 +65,13 @@ jobs:
 
           SHA_ID=$(curl -X  GET \
                     https://api.github.com/repos/swapneshran/realworld/actions/runs \
-                     -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                     -H "Accept: application/vnd.github.v3+json" \
+                    -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+                    -H "Accept: application/vnd.github.v3+json" \
                      | jq '.workflow_runs[0].head_sha' \
                      | sed 's/"//g' ) \
 
 
           echo "work flow id $SHA_ID"
-
 
 
           SHA_ID2=$(curl -X  GET \
@@ -96,7 +95,7 @@ jobs:
       - name: printing
         id: log_url_print
         run: |
-            echo "Log URL is : $LOG_URL"
+            echo "Log URL is : ${{ steps.log_url.outputs.text }}"
         env:
             LOG_URL: ${{ steps.log_url.outputs.log_url }}
         if: always()
