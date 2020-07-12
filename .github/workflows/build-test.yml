@@ -47,7 +47,7 @@ jobs:
         id: echo_output_js_failure
 
       - name: build
-          run: |
+        run: |
             npm run build $@ | tee lox.txt
             if [  ${PIPESTATUS[0]} -gt 0 ]
               then
