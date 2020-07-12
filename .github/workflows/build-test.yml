@@ -69,8 +69,6 @@ jobs:
           echo "$GITHUB_TOKEN"
 
 
-          echo "Log url is"
-          echo "https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$CHECK_RUN_ID/logs"
 
           SHA_ID=$(curl -X  GET \
                     https://api.github.com/repos/swapneshran/realworld/actions/runs \
@@ -80,7 +78,7 @@ jobs:
                        | sed 's/"//g' ) \
 
 
-          echo $SHA_ID
+          echo "work flow id $SHA_ID"
 
 
 
@@ -91,8 +89,9 @@ jobs:
                        | jq '.check_runs[0].id'
                         ) \
 
-          echo "Log url is $SHA_ID2"
-          echo "https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs"
+          echo "Check suite id is $SHA_ID2"
+          LOGURL=("https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs")
+          echo "##[set-output name=log_url;]$(LOGURL)"
 
 
         # unzip the tar and read it
