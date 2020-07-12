@@ -38,7 +38,7 @@ jobs:
 #          echo "::set-output name=mix-test::$(npm test)\n"
       - name: install and echo
         run: |
-          npm install $@ >> log.txt
+          npm install $@ &>> log.txt
           if [  ${PIPESTATUS[0]} -gt 0 ]
             then
               exit 1
@@ -48,7 +48,7 @@ jobs:
 
       - name: build
         run: |
-            npm run build $@ >>  log.txt
+            npm run build $@ &>>  log.txt
             if [  ${PIPESTATUS[0]} -gt 0 ]
               then
                 exit 1
