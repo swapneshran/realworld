@@ -43,7 +43,7 @@ jobs:
 
       - uses: ./
         name: show_out put
-        id: show_out
+        id: file_read
         with:
           path: log.txt
       - run: echo $TEXT
