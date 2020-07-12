@@ -60,12 +60,12 @@ jobs:
         id: file_read
         with:
           path: log.txt
-        continue-on-error: true
+        if: always()
       - run: |
           echo $TEXT
           curl google.com
         env:
            TEXT: ${{ steps.file_read.outputs.text }}
-        continue-on-error: true
+        if: always()
 
 
