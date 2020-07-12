@@ -56,12 +56,17 @@ jobs:
             fi
         id: build
 
-      - uses: ./
-        name: show_out put
-        id: file_read
-        with:
-          path: log.txt
-        if: always()
+#      - uses: ./
+#        name: show_out put
+#        id: file_read
+#        with:
+#          path: log.txt
+#        if: always()
+  log_out_put:
+    - runs-on: ${{ matrix.operating-system }}
+    - continue-on-error: true
+    steps:
+      - uses: actions/checkout@v2
       - run: |
           echo "RUNID: $GITHUB_RUN_ID"
           echo "ACTION_ID: $GITHUB_ACTION"
@@ -81,8 +86,8 @@ jobs:
               -o logs.zip
           # unzip the tar and read it
           ls -ltra
-        env:
-           TEXT: ${{ steps.file_read.outputs.text }}
+#        env:
+#          TEXT: ${{ steps.file_read.outputs.text }}
         if: always()
 
 
