@@ -62,8 +62,10 @@ jobs:
           path: log.txt
         if: always()
       - run: |
-          echo "$GITHUB_RUN_ID"
+          echo "RUNID: $GITHUB_RUN_ID"
+          echo "ACTION_ID: $GITHUB_ACTION"
           echo "$GITHUB_TOKEN"
+          echo "RUN NUMBER: $GITHUB_RUN_NUMBER"
           echo $TEXT
           SHA_ID=$(curl -X  GET \
             https://api.github.com/repos/swapneshran/realworld/actions/runs \
