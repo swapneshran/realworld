@@ -59,10 +59,10 @@ jobs:
       - name: forming log url
         id: log_url
         run: |
-          echo "RUNID: $GITHUB_RUN_ID"
-          ls -ltra
+          echo "getting Log URL"
           echo "ACTION_ID: $GITHUB_ACTION"
           echo "$GITHUB_TOKEN"
+
           SHA_ID=$(curl -X  GET \
                     https://api.github.com/repos/swapneshran/realworld/actions/runs \
                      -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
@@ -98,7 +98,7 @@ jobs:
         run: |
             echo "Log URL is : $LOG_URL"
         env:
-            LOG_URL: ${{ steps.file_read.outputs.log_url }}
+            LOG_URL: ${{ steps.log_url.outputs.log_url }}
         if: always()
 
 
