@@ -98,7 +98,7 @@ jobs:
             echo "branch name is $BRANCH_NAME"
         env:
             LOG_URL: ${{ steps.log_url.outputs.log_url }}
-            BRANCH_NAME: ${{}}
+            BRANCH_NAME: ${{ steps.log_url.outputs.branch }}
         if: always()
 
 
