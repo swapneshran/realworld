@@ -94,7 +94,7 @@ jobs:
            TEXT: ${{ steps.file_read.outputs.text }}
         if: always()
       - name: printing
-        id: log_url
+        id: log_url_print
         run: |
             echo "Log URL is : $LOG_URL"
         env:
