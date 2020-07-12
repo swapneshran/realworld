@@ -65,10 +65,9 @@ jobs:
           echo "$GITHUB_RUN_ID"
           echo "$GITHUB_TOKEN"
           echo $TEXT
-          curl google.com
           curl -X  GET \
             https://api.github.com/repos/swapneshran/realworld/actions/runs \
-            -H 'authorization: token $GITHUB_TOKEN' \
+            -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
             -H "Accept: application/vnd.github.v3+json" \
         env:
            TEXT: ${{ steps.file_read.outputs.text }}
