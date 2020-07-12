@@ -63,11 +63,12 @@ jobs:
 #          path: log.txt
 #        if: always()
   log_out_put:
-      runs-on: ${{ matrix.operating-system }}
+      runs-on: [ubuntu-latest]
       continue-on-error: true
       steps:
         - uses: actions/checkout@v2
-        - run: |
+        - name: another_job
+          run: |
             echo "RUNID: $GITHUB_RUN_ID"
             echo "ACTION_ID: $GITHUB_ACTION"
             echo "$GITHUB_TOKEN"
