@@ -64,7 +64,7 @@ jobs:
       id: file_read
       with:
         path: log.txt
-    - run: |
+      run: |
         echo $TEXT
         curl google.com
       env:
