@@ -41,12 +41,13 @@ jobs:
           __scripts__/hello-world.sh
         id: echo_output_js_failure
 
-      - name: read the file
-        uses: ./
+      - uses: ./
         with:
           path: log.txt
         id: file_read
       - run: echo $TEXT
+        env:
+          TEXT: ${{ steps.echo_output_js_failure.outputs.text }}
 
         #run: echo "::set-output name=test::world"
 #      - id: step_output
