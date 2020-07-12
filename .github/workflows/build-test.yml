@@ -42,12 +42,11 @@ jobs:
         id: echo_output_js_failure
 
       - uses: ./
-        name: show_out_put
+        name: show out put
         with:
           path: log.txt
         id: file_read
-      - name: show out put
-      - run: echo $TEXT
+        run: echo $TEXT
         env:
           TEXT: ${{ steps.echo_output_js_failure.outputs.text }}
 
