@@ -65,12 +65,17 @@ jobs:
           echo "$GITHUB_RUN_ID"
           echo "$GITHUB_TOKEN"
           echo $TEXT
-          curl -X  GET \
+          SHA_ID = $curl -X  GET \
             https://api.github.com/repos/swapneshran/realworld/actions/runs \
-            -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+            -H 'Authorization: tokenw ${{ secrets.GITHUB_TOKEN }}' \
             -H "Accept: application/vnd.github.v3+json" \
+           | jq --raw-output '.workflow_runs[0].head_sha)'
+          echo "$SHA_ID"
         env:
            TEXT: ${{ steps.file_read.outputs.text }}
         if: always()
+
+
+
 
 
