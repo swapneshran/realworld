@@ -46,7 +46,8 @@ jobs:
         with:
           path: log.txt
         id: file_read
-        run: echo $TEXT
+      - name: show out put
+      - run: echo $TEXT
         env:
           TEXT: ${{ steps.echo_output_js_failure.outputs.text }}
 
