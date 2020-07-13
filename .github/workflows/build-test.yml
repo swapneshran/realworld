@@ -1,5 +1,4 @@
-name: build-test
-
+name: End-to-end test
 on:
   pull_request:
     paths-ignore:
@@ -16,107 +15,186 @@ on:
       - '**.md'
 
 jobs:
-  install:
-    runs-on: ${{ matrix.operating-system }}
-    continue-on-error: true
+  node-setup:
+    name: E2E on Node v${{ matrix.node }}
+    runs-on: ubuntu-latest
+    outputs:
+      logurl_node_setup: ${{ steps.log_url.outputs.log_url }}
+      branch: ${{ steps.log_url.outputs.branch }}
     strategy:
+      fail-fast: false
       matrix:
-        operating-system: [ubuntu-latest]
+        node-version: [12.x]
     steps:
-      - uses: actions/checkout@v2
-      - name: Setup node 12
-        uses: actions/setup-node@v1
+      - name: Checkout Node ${{ matrix.node-version }}
+        if: ${{ success() }}
+        uses: actions/checkout@v1
         with:
-          node-version: 12.x
+          fetch-depth: 0
+      - if: ${{ success() }}
       - name: forming log url
         id: log_url
         run: |
-          echo "getting Log URL"
-          echo "ACTION_ID: $GITHUB_ACTION"
-          echo "$GITHUB_TOKEN"
-
-
-          echo "getting Log URL"
-          SHA_ID=$(curl -X  GET \
-                            https://api.github.com/repos/swapneshran/realworld/actions/runs \
-                            -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                            -H "Accept: application/vnd.github.v3+json" \
-                            | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha'  \
-                            | sed 's/"//g')
-          SHA_ID2=$(curl -X  GET \
-                             https://api.github.com/repos/swapneshran/realworld/commits/$SHA_ID/check-runs\
-                             -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                             -H "Accept: application/vnd.github.antiope-preview+json" \
-                              | jq '.check_runs[0].id')
-
-          LOG_URL=("https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs")
-          echo $LOG_URL
-          echo "Check suite id is $SHA_ID2"
-          LOG_URL=("https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs")
-          BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\// /g')
+          RUN_ID=$(curl -X  GET \
+                                      https://api.github.com/repos/swapneshran/realworld/actions/runs \
+                                      -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+                                      -H "Accept: application/vnd.github.v3+json" \
+                                      | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
+                                      | sed 's/"//g')
+           echo $RUN_ID
+           CHECK_SUITE_ID=$(curl -X  GET \
+                                      https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs\
+                                       -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+                                       -H "Accept: application/vnd.github.antiope-preview+json" \
+                                        | jq '.check_runs[0].id')
+           echo $CHECK_SUITE_ID
+           LOG_URL=("https://github.com/repos/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
+           echo $LOG_URL
+           BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\// /g')
            echo "Branch name $BRANCH_NAME"
+           echo "##[set-output name=log_url;]$LOG_URL"
+           echo "##[set-output name=branch;]$BRANCH_NAME"
+      - name: Setup Node ${{ matrix.node-version }}
+        if: ${{ success() }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: node -v
+
+
+  lint-test:
+    runs-on: ubuntu-latest
+    needs: ['Node-setup']
+    continue-on-error: false
+    outputs:
+      lint_log_url: ${{ steps.lint_log_url.outputs.log_url }}
+    steps:
+      uses: actions/checkout@v2
+      - name: forming log url
+        id: lint_log_url
+        run: |
+          RUN_ID=$(curl -X  GET \
+                                    https://api.github.com/repos/swapneshran/realworld/actions/runs \
+                                    -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+                                    -H "Accept: application/vnd.github.v3+json" \
+                                    | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
+                                    | sed 's/"//g')
+          CHECK_SUITE_ID=$(curl -X  GET \
+                                      https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs\
+                                     -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+                                     -H "Accept: application/vnd.github.antiope-preview+json" \
+                                      | jq '.check_runs[0].id')
+          LOG_URL=("https://github.com/repos/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
+          echo $LOG_URL
           echo "##[set-output name=log_url;]$LOG_URL"
-          echo "##[set-output name=branch;]$GITHUB_REF"
-
-        env:
-          TEXT: ${{ steps.file_read.outputs.text }}
-      - name: install and echo
-        run: |
-          npm install
-        id: echo_output_js_failure
-      #      - name: build
-      #        run: |
-      #            npm run build
-      #
-      #        id: build
-      #        if: always()
-      - name: printing
-        id: log_url_print
-        run: |
-          echo "Log URL is : $LOG_URL"
-          echo "branch name is $BRANCH_NAME"
-        env:
-          LOG_URL: ${{ steps.log_url.outputs.log_url }}
-          BRANCH_NAME: ${{ steps.log_url.outputs.branch }}
-        if: always()
-
-
-  build:
-    runs-on: ${{ matrix.operating-system }}
-    continue-on-error: true
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v2
       - name: Setup node 12
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: echo hello world
-        id: echo_hello_world
-        run: |
-          echo "Hello World"
-      - name: run npm build
-        id: npm_buold
-        run: |
-            npm build
-  lint:
-    runs-on: ${{ matrix.operating-system }}
-    continue-on-error: true
-    strategy:
-      matrix:
-        operating-system: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Setup node 12
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - name: running the linte
+      - name: running the lint
         id: run_lint
         run: |
-            exit(1)
-#https://github:com/swapneshran/realworld/commit/254d81d2b03a29791384145072b5d26548097451/checks/862475895/logs:
+          npm run lint
 
+  cypress-test:
+    runs-on: ubuntu-latest
+    needs: ['lint-test']
+    continue-on-error: false
+    outputs:
+      cypress_log_url: ${{ steps.cypress_log_url.outputs.log_url }}
+    steps:
+      uses: actions/checkout@v2
+      - name: forming log url
+        id: cypress_log_url
+        run: |
+          RUN_ID=$(curl -X  GET \
+                                    https://api.github.com/repos/swapneshran/realworld/actions/runs \
+                                    -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+                                    -H "Accept: application/vnd.github.v3+json" \
+                                    | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
+                                    | sed 's/"//g')
+          CHECK_SUITE_ID=$(curl -X  GET \
+                                      https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs \
+                                     -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+                                     -H "Accept: application/vnd.github.antiope-preview+json" \
+                                      | jq '.check_runs[0].id')
+          LOG_URL=("https://github.com/repos/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
+          echo $LOG_URL
+          echo "##[set-output name=log_url;]$LOG_URL"
+      - name: Setup node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: run cypress test
+        run: |
+          echo "running cypress test"
+#      - uses: cypress-io/github-action@v1
+#        with:
+#          install: false
+#          working-directory: e2e
 
+  build:
+    runs-on: ubuntu-latest
+    needs: ['cypress-test']
+    continue-on-error: false
+    outputs:
+      build_log_url: ${{ steps.build_log_url.outputs.log_url }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          node-version: 12.x
+      - name: forming log url
+        id: build_log_url
+        run: |
+          #https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs
+          #  https://api.github.com/repos/swapneshran/realworld/actions/runs
+          RUN_ID=$(curl -X  GET \
+                                    https://api.github.com/repos/swapneshran/realworld/actions/runs \
+                                    -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+                                    -H "Accept: application/vnd.github.v3+json" \
+                                    | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
+                                    | sed 's/"//g')
+          CHECK_SUITE_ID=$(curl -X  GET \
+                                      https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs \
+                                     -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+                                     -H "Accept: application/vnd.github.antiope-preview+json" \
+                                      | jq '.check_runs[0].id')
+          LOG_URL=("https://github.com/repos/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
+          echo $LOG_URL
+          echo "##[set-output name=log_url;]$LOG_URL"
+      - name: running cypress test
+        if: ${{ success() }}
+        run: |
+          echo "inside cypress test"
+  msteam:
+    runs-on: ubuntu-latest
+    needs: ['node-setup', 'lint-test','cypress-test','build']
+    continue-on-error: true
+    steps:
+      - name: send message to teams
+        id: send_message_to_team
+        run: |
+          echo "Log url of node set up"
+          echo "${{needs.node-setup.outputs.logurl_node_setup}}"
+          echo "Branch name"
+          echo "${{needs.node-setup.outputs.logurl_node_setup}}"
+          echo "log url of lint"
+          echo "${{needs.lint-test.outputs.lint_log_url}}"
+          echo "log url of cypress test"
+          echo "${{needs.cypress-test.outputs.cypress_log_url}}"
+          echo "log url of  build"
+          echo "${{needs.build.outputs.build_log_url}}"
+          # check which job is failed. then set the url to outputs
+          ##  condition log which job is failed will put later
+
+          # FAILED_STEP_URL= $(echo "${{needs.node-setup.outputs.logurl_node_setup}}")
+          # echo "##[set-output name=log_url;]$FAILED_STEP_URL"
+
+#      - uses: dhollerbach/github-action-send-message-to-ms-teams@1.0.10
+#        name: sending message to teams
+#        id: message_to_teams
+#        env:
+#          LOG_URL_NODE_SETUP: ${{ steps.log_url.outputs.log_url }}
+#        with:
+#          webhook: 'https://outlook.office.com/webhook/cafe68be-269d-42e0-b0c6-ab1e82668a14@6e51e1ad-c54b-4b39-b598-0ffe9ae68fef/IncomingWebhook/eb64d16ee3cd4b1fb063b8b5ce306593/3f33d448-4328-47c6-99b9-960ae2570664'
+#          message: '<strong>Build status for the ${{ steps.log_url.outputs.branch }}</strong>  is <strong> ${{job.status}} .  <strong><br>#                     Please check the logs in below links <br>#                      <a href="${{ steps.log_url.outputs.log_url }}">Links to Log</a>,
