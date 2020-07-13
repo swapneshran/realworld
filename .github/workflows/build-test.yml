@@ -116,7 +116,7 @@ jobs:
       - name: running the linte
         id: run_lint
         run: |
-            npm run lint
+            exit(1)
 #https://github:com/swapneshran/realworld/commit/254d81d2b03a29791384145072b5d26548097451/checks/862475895/logs:
 
 
