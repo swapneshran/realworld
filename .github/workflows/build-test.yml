@@ -39,11 +39,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: |
          echo "check for node"
-         node -v
-      - name: exiting from process
-        id: exit_process
-        run: |
-           exit 1
+#         node -v
+#      - name: exiting from process
+#        id: exit_process
+#        run: |
+#           exit 1
       - name: running the lint
         id: run_lint
         run: |
