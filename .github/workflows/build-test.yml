@@ -142,15 +142,34 @@ jobs:
       - name: send message to teams
         id: send_message_to_team
         run: |
+          WEBHOOK_URL = 'https://webhook.site/ef9498ad-328a-4367-8d7d-3023268e7c00'
 
-          echo "Log Url and job status"
-          echo "log url of  checkoutput and status is ${{needs.node-setup-lint-check.outputs.logurl_node_setup}} status is ${{needs.node-setup-lint-check.outputs.status}}"
-          echo "log url of  cypress and status is ${{needs.cypress-test.outputs.cypress_log_url}} status is ${{needs.cypress-test.outputs.status}}"
-          echo "log url of  build and status is ${{needs.build.outputs.build_log_url}} status is ${{needs.build.outputs.status}}"
+          if [ $NODE_SETUP_STATUS == 'failure' ]
+            then
+               echo "node set up is failed"
+               MESSAGE='node set up is failed. for the branch'
+               curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
+                 $WEBHOOK_URL
+            elif [ $CYPRESS_STATUS == 'failure' ]
+            then
+               echo "cypress test is failed"
+               MESSAGE='node set up is failed. for the branch'
+               curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
+                $WEBHOOK_URL
+             elif [  $BUILD_STATUS == 'failure' ]
+             then
+                echo "build is failed"
+                MESSAGE='node set up is failed. for the branch'
+                curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
+                $WEBHOOK_URL
+            else
+                echo "all the jobs are successful"
+                curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}'  \
+                          $WEBHOOK_URL
+          fi
 
-          ./__scripts__/send_message_teams.sh
 
-#          if [ ${{needs.node-setup-lint-check.outputs.status}} == 'failure' ]
+          #          if [ ${{needs.node-setup-lint-check.outputs.status}} == 'failure' ]
 #          then
 #             echo "node set up is failed"
 #             MESSAGE='node set up is failed. for the branch'
