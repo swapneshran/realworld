@@ -143,7 +143,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: ['cypress-test']
-    continue-on-error: false
+    continue-on-error: true
     outputs:
       build_log_url: ${{ steps.build_log_url.outputs.log_url }}
     steps:
@@ -174,29 +174,29 @@ jobs:
           echo "inside cypress test"
 
 #
-#  msteam:
-#    runs-on: ubuntu-latest
-#    needs: ['node-setup', 'lint-test','cypress-test','build']
-#    continue-on-error: true
-#    steps:
-#      - name: send message to teams
-#        id: send_message_to_team
-#        run: |
-#          echo "Log url of node set up"
-#          echo "${{needs.node-setup.outputs.logurl_node_setup}}"
-#          echo "Branch name"
-#          echo "${{needs.node-setup.outputs.logurl_node_setup}}"
-#          echo "log url of lint"
-#          echo "${{needs.lint-test.outputs.lint_log_url}}"
-#          echo "log url of cypress test"
-#          echo "${{needs.cypress-test.outputs.cypress_log_url}}"
-#          echo "log url of  build"
-#          echo "${{needs.build.outputs.build_log_url}}"
-#          # check which job is failed. then set the url to outputs
-#          ##  condition log which job is failed will put later
-#
-#          # FAILED_STEP_URL= $(echo "${{needs.node-setup.outputs.logurl_node_setup}}")
-#          # echo "##[set-output name=log_url;]$FAILED_STEP_URL"
+  msteam:
+    runs-on: ubuntu-latest
+    needs: ['node-setup', 'lint-test','cypress-test','build']
+    continue-on-error: true
+    steps:
+      - name: send message to teams
+        id: send_message_to_team
+        run: |
+          echo "Log url of node set up"
+          echo "${{needs.node-setup.outputs.logurl_node_setup}}"
+          echo "Branch name"
+          echo "${{needs.node-setup.outputs.logurl_node_setup}}"
+          echo "log url of lint"
+          echo "${{needs.lint-test.outputs.lint_log_url}}"
+          echo "log url of cypress test"
+          echo "${{needs.cypress-test.outputs.cypress_log_url}}"
+          echo "log url of  build"
+          echo "${{needs.build.outputs.build_log_url}}"
+          # check which job is failed. then set the url to outputs
+          ##  condition log which job is failed will put later
+
+          # FAILED_STEP_URL= $(echo "${{needs.node-setup.outputs.logurl_node_setup}}")
+          # echo "##[set-output name=log_url;]$FAILED_STEP_URL"
 
 #      - uses: dhollerbach/github-action-send-message-to-ms-teams@1.0.10
 #        name: sending message to teams
