@@ -69,7 +69,7 @@ jobs:
     outputs:
       lint_log_url: ${{ steps.lint_log_url.outputs.log_url }}
     steps:
-      uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: forming log url
         id: lint_log_url
         run: |
@@ -103,7 +103,7 @@ jobs:
     outputs:
       cypress_log_url: ${{ steps.cypress_log_url.outputs.log_url }}
     steps:
-      uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: forming log url
         id: cypress_log_url
         run: |
