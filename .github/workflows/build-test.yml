@@ -26,10 +26,10 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-      - name: forming log url
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v1
         with:
           fetch-depth: 0
+      - name: forming log url
         id: log_url
         run: |
           RUN_ID=$(curl -X  GET \
@@ -59,72 +59,72 @@ jobs:
       - run: node -v
 
 
-  lint-test:
-    runs-on: ubuntu-latest
-    needs: ['Node-setup']
-    continue-on-error: false
-    outputs:
-      lint_log_url: ${{ steps.lint_log_url.outputs.log_url }}
-    steps:
-      - name: forming log url
-        uses: actions/checkout@v1
-        id: lint_log_url
-        run: |
-          RUN_ID=$(curl -X  GET \
-                                    https://api.github.com/repos/swapneshran/realworld/actions/runs \
-                                    -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                                    -H "Accept: application/vnd.github.v3+json" \
-                                    | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
-                                    | sed 's/"//g')
-          CHECK_SUITE_ID=$(curl -X  GET \
-                                      https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs\
-                                     -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                                     -H "Accept: application/vnd.github.antiope-preview+json" \
-                                      | jq '.check_runs[0].id')
-          LOG_URL=("https://github.com/repos/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
-          echo $LOG_URL
-          echo "##[set-output name=log_url;]$LOG_URL"
-      - name: Setup node 12
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - name: running the lint
-        id: run_lint
-        run: |
-          npm run lint
-
-  cypress-test:
-    runs-on: ubuntu-latest
-    needs: ['lint-test']
-    continue-on-error: false
-    outputs:
-      cypress_log_url: ${{ steps.cypress_log_url.outputs.log_url }}
-    steps:
-      - name: checkout code
-        uses: actions/checkout@v2
-        id: cypress_log_url
-        run: |
-          RUN_ID=$(curl -X  GET \
-                                    https://api.github.com/repos/swapneshran/realworld/actions/runs \
-                                    -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                                    -H "Accept: application/vnd.github.v3+json" \
-                                    | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
-                                    | sed 's/"//g')
-          CHECK_SUITE_ID=$(curl -X  GET \
-                                      https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs \
-                                     -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                                     -H "Accept: application/vnd.github.antiope-preview+json" \
-                                      | jq '.check_runs[0].id')
-          LOG_URL=("https://github.com/repos/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
-          echo $LOG_URL
-          echo "##[set-output name=log_url;]$LOG_URL"
-      - name: Setup node 12
-        uses: actions/setup-node@v1
-        with:
-          node-version: 12.x
-      - name: run cypress test
-        run: |
-          echo "running cypress test"
+#  lint-test:
+#    runs-on: ubuntu-latest
+#    needs: ['Node-setup']
+#    continue-on-error: false
+#    outputs:
+#      lint_log_url: ${{ steps.lint_log_url.outputs.log_url }}
+#    steps:
+#      - uses: actions/checkout@v1
+#      - name: forming log url
+#        id: lint_log_url
+#        run: |
+#          RUN_ID=$(curl -X  GET \
+#                                    https://api.github.com/repos/swapneshran/realworld/actions/runs \
+#                                    -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+#                                    -H "Accept: application/vnd.github.v3+json" \
+#                                    | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
+#                                    | sed 's/"//g')
+#          CHECK_SUITE_ID=$(curl -X  GET \
+#                                      https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs\
+#                                     -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+#                                     -H "Accept: application/vnd.github.antiope-preview+json" \
+#                                      | jq '.check_runs[0].id')
+#          LOG_URL=("https://github.com/repos/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
+#          echo $LOG_URL
+#          echo "##[set-output name=log_url;]$LOG_URL"
+#      - name: Setup node 12
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 12.x
+#      - name: running the lint
+#        id: run_lint
+#        run: |
+#          npm run lint
+#
+#  cypress-test:
+#    runs-on: ubuntu-latest
+#    needs: ['lint-test']
+#    continue-on-error: false
+#    outputs:
+#      cypress_log_url: ${{ steps.cypress_log_url.outputs.log_url }}
+#    steps:
+#      - uses: actions/checkout@v1
+#      - name: checkout code
+#        id: cypress_log_url
+#        run: |
+#          RUN_ID=$(curl -X  GET \
+#                                    https://api.github.com/repos/swapneshran/realworld/actions/runs \
+#                                    -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+#                                    -H "Accept: application/vnd.github.v3+json" \
+#                                    | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
+#                                    | sed 's/"//g')
+#          CHECK_SUITE_ID=$(curl -X  GET \
+#                                      https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs \
+#                                     -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
+#                                     -H "Accept: application/vnd.github.antiope-preview+json" \
+#                                      | jq '.check_runs[0].id')
+#          LOG_URL=("https://github.com/repos/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
+#          echo $LOG_URL
+#          echo "##[set-output name=log_url;]$LOG_URL"
+#      - name: Setup node 12
+#        uses: actions/setup-node@v1
+#        with:
+#          node-version: 12.x
+#      - name: run cypress test
+#        run: |
+#          echo "running cypress test"
 #      - uses: cypress-io/github-action@v1
 #        with:
 #          install: false
