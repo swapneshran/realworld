@@ -52,6 +52,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          echo "setting status of node set up"
+           echo ${{ job.status }}
             ./__scripts__/log_url.sh
   cypress-test:
     runs-on: ubuntu-latest
