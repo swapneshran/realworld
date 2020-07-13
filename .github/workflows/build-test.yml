@@ -142,38 +142,43 @@ jobs:
           CYPRESS_STATUS=${{needs.cypress-test.outputs.status}}
           BUILD_URL=${{needs.build.outputs.build_log_url}}
           BUILD_STATUS=${{needs.build.outputs.status}}
+          BRANCH_NAME=${{needs.node-setup-lint-check.outputs.branch}}
 
           if [ $NODE_SETUP_STATUS == 'failure' ]
             then
-               echo "node set up and lint check is failed"
+               echo 'node set up and lint check is failed for branch '
 
-               MESSAGE='node set up is failed. for the branch'
+               MESSAGE='node set up is failed. for the branch "$BRANCH_NAME". Log can be found <a>  \
+                 href='"$NODE_SETUP_LINT_URL"'> Log Url </a> \
+                '
 
                curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
                  $WEBHOOK_URL
 
             elif [ $CYPRESS_STATUS == 'failure' ]
             then
-               echo "cypress test is failed"
+               echo "Cypress test is failed for the branch "$BRANCH_NAME". Log can be found <a>  \
+                                        href='"$CYPRESS_LOG_URL"'> Log Url </a>"
 
-               MESSAGE='cypress test cases are failing'
+               MESSAGE='cypress test cases failed for branch '
 
                curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
                 $WEBHOOK_URL
 
              elif [  $BUILD_STATUS == 'failure' ]
              then
-                echo "build is failed"
+                echo "build is failed for the branch "$BRANCH_NAME". Log can be found <a>  \
+                                                                              href='"$BUILD_URL"'> Log Url </a>"
 
-                MESSAGE='Build is failed for the  branch'
+                MESSAGE='Build is failed for the  branch for branch'
 
                 curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
                 $WEBHOOK_URL
 
             else
-                echo "all the jobs are successful"
+                echo "All the jobs are successful for branch"
 
-                MESSAGE='All the jobs are passed'
+                MESSAGE='All the jobs are passed for the branch "$BRANCH_NAME".'
 
                 curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}'  \
                           $WEBHOOK_URL
