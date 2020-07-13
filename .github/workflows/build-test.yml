@@ -62,7 +62,7 @@ jobs:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 0
-      - name: checkout code
+      - name: output url
         id: cypress_log_url
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -92,7 +92,7 @@ jobs:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 0
-      - name: checkout code
+      - name: output url
         id: build_log_url
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -130,13 +130,6 @@ jobs:
 
           # FAILED_STEP_URL= $(echo "${{needs.node-setup.outputs.logurl_node_setup}}")
           # echo "##[set-output name=log_url;]$FAILED_STEP_URL"
-
-          // on macOS or Linux
-          # need to be tested
-
-          # curl -H 'Content-Type: application/json' \
-          # -d '{"text": "Hello World"}' https://outlook.office.com/webhook/cafe68be-269d-42e0-b0c6-ab1e82668a14@6e51e1ad-c54b-4b39-b598-0ffe9ae68fef/IncomingWebhook/eb64d16ee3cd4b1fb063b8b5ce306593/3f33d448-4328-47c6-99b9-960ae2570664
-
 #      - uses: dhollerbach/github-action-send-message-to-ms-teams@1.0.10
 #        name: sending message to teams
 #        id: message_to_teams
