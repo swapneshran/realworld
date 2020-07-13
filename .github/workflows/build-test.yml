@@ -34,7 +34,7 @@ jobs:
       - name: forming log url
         id: log_url
         run: |
-          ./scripts/log_url.sh
+          ./__scripts__/log_url.sh
 
 #          RUN_ID=$(curl -X  GET \
 #                                      https://api.github.com/repos/swapneshran/realworld/actions/runs \

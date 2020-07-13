@@ -12,5 +12,7 @@ CHECK_SUITE_ID=$(curl -X  GET \
                                      -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
                                      -H "Accept: application/vnd.github.antiope-preview+json" \
                                       | jq '.check_runs[0].id')
- LOG_URL=("https://github.com/repos/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
- echo $LOG_URL
+LOG_URL=("https://github.com/repos/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
+echo $LOG_URL
+echo "##[set-output name=log_url;]$LOG_URL"
+echo "##[set-output name=branch;]$BRANCH_NAME"
