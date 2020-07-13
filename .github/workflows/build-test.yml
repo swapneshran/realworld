@@ -40,6 +40,10 @@ jobs:
       - run: |
          echo "check for node"
          node -v
+      - name: exiting from process
+        id: exit_process
+        run: |
+           exit 1
       - name: running the lint
         id: run_lint
         run: |
@@ -144,6 +148,8 @@ jobs:
           BUILD_STATUS=${{needs.build.outputs.status}}
           BRANCH_NAME=${{needs.node-setup-lint-check.outputs.branch}}
 
+          echo $BRANCH_NAME
+          echo $NODE_SETUP_LINT_URL
           if [ $NODE_SETUP_STATUS == 'failure' ]
             then
                echo 'node set up and lint check is failed for branch '
