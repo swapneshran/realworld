@@ -37,26 +37,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           ./__scripts__/log_url.sh
-
-#          RUN_ID=$(curl -X  GET \
-#                                      https://api.github.com/repos/swapneshran/realworld/actions/runs \
-#                                      -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-#                                      -H "Accept: application/vnd.github.v3+json" \
-#                                      | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
-#                                      | sed 's/"//g')
-#           echo $RUN_ID
-#           CHECK_SUITE_ID=$(curl -X  GET \
-#                                      https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs\
-#                                       -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-#                                       -H "Accept: application/vnd.github.antiope-preview+json" \
-#                                        | jq '.check_runs[0].id')
-#           echo $CHECK_SUITE_ID
-#           LOG_URL=("ttps://github.com/swapneshran/realworld/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
-#           echo $LOG_URL
-#           BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\// /g')
-#           echo "Branch name $BRANCH_NAME"
-#           echo "##[set-output name=log_url;]$LOG_URL"
-#           echo "##[set-output name=branch;]$BRANCH_NAME"
       - name: Setup Node ${{ matrix.node-version }}
         if: ${{ success() }}
         uses: actions/setup-node@v1
@@ -76,21 +56,11 @@ jobs:
           fetch-depth: 0
       - name: forming log url
         id: lint_log_url
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          RUN_ID=$(curl -X  GET \
-                                    https://api.github.com/repos/swapneshran/realworld/actions/runs \
-                                    -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                                    -H "Accept: application/vnd.github.v3+json" \
-                                    | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
-                                    | sed 's/"//g')
-          CHECK_SUITE_ID=$(curl -X  GET \
-                                      https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs\
-                                     -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                                     -H "Accept: application/vnd.github.antiope-preview+json" \
-                                      | jq '.check_runs[0].id')
-          LOG_URL=("ttps://github.com/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
-          echo $LOG_URL
-          echo "##[set-output name=log_url;]$LOG_URL"
+            ./__scripts__/log_url.sh
+
       - name: Setup node 12
         uses: actions/setup-node@v1
         with:
@@ -115,21 +85,10 @@ jobs:
           fetch-depth: 0
       - name: checkout code
         id: cypress_log_url
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          RUN_ID=$(curl -X  GET \
-                                    https://api.github.com/repos/swapneshran/realworld/actions/runs \
-                                    -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                                    -H "Accept: application/vnd.github.v3+json" \
-                                    | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
-                                    | sed 's/"//g')
-          CHECK_SUITE_ID=$(curl -X  GET \
-                                      https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs \
-                                     -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                                     -H "Accept: application/vnd.github.antiope-preview+json" \
-                                      | jq '.check_runs[0].id')
-          LOG_URL=("https://github.com/repos/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
-          echo $LOG_URL
-          echo "##[set-output name=log_url;]$LOG_URL"
+            ./__scripts__/log_url.sh
       - name: Setup node 12
         uses: actions/setup-node@v1
         with:
@@ -155,23 +114,10 @@ jobs:
         with:
           fetch-depth: 0
       - name: checkout code
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs
-          # https://api.github.com/repos/swapneshran/realworld/actions/runs
-          RUN_ID=$(curl -X  GET \
-                                    https://api.github.com/repos/swapneshran/realworld/actions/runs \
-                                    -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                                    -H "Accept: application/vnd.github.v3+json" \
-                                    | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
-                                    | sed 's/"//g')
-          CHECK_SUITE_ID=$(curl -X  GET \
-                                      https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs \
-                                     -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
-                                     -H "Accept: application/vnd.github.antiope-preview+json" \
-                                      | jq '.check_runs[0].id')
-          LOG_URL=("https://github.com/repos/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
-          echo $LOG_URL
-          echo "##[set-output name=log_url;]$LOG_URL"
+            ./__scripts__/log_url.sh
       - name: running cypress test
         if: ${{ success() }}
         run: |
