@@ -97,9 +97,9 @@ jobs:
         id: echo_hello_world
         run: |
           echo "Hello World"
-      - name: echo hello world
-          id: echo_hello_world
-          run: |
+      - name: run npm build
+        id: npm_buold
+        run: |
             npm build
   lint:
     runs-on: ${{ matrix.operating-system }}
@@ -115,7 +115,7 @@ jobs:
           node-version: 12.x
       - name: running the linte
         id: run_lint
-          run: |
+        run: |
             npm run lint
 #https://github:com/swapneshran/realworld/commit/254d81d2b03a29791384145072b5d26548097451/checks/862475895/logs:
 
