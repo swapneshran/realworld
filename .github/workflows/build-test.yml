@@ -143,7 +143,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     needs: ['cypress-test']
-    continue-on-error: true
+    continue-on-error: false
     outputs:
       build_log_url: ${{ steps.build_log_url.outputs.log_url }}
     steps:
@@ -177,7 +177,7 @@ jobs:
   msteam:
     runs-on: ubuntu-latest
     needs: ['node-setup', 'lint-test','cypress-test','build']
-    continue-on-error: true
+    if : always()
     steps:
       - name: send message to teams
         id: send_message_to_team
