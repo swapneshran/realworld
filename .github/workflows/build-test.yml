@@ -54,8 +54,8 @@ jobs:
 
   cypress-test:
     runs-on: ubuntu-latest
-    needs: ['lint-test']
-    continue-on-error: true
+    needs: ['node-setup-lint-check']
+    continue-on-error: false
     outputs:
       cypress_log_url: ${{ steps.cypress_log_url.outputs.log_url }}
     steps:
@@ -112,18 +112,14 @@ jobs:
 #
   msteam:
     runs-on: ubuntu-latest
-    needs: ['node-setup', 'lint-test','cypress-test','build']
+    needs: ['node-setup-lint-check','cypress-test','build']
     if : always()
     steps:
       - name: send message to teams
         id: send_message_to_team
         run: |
-          echo "Log url of node set up"
-          echo "${{needs.node-setup.outputs.logurl_node_setup}}"
           echo "Branch name"
-          echo "${{needs.node-setup.outputs.logurl_node_setup}}"
-          echo "log url of lint"
-          echo "${{needs.lint-test.outputs.lint_log_url}}"
+          echo "${{needs.node-setup-lint-check.outputs.logurl_node_setup}}"
           echo "log url of cypress test"
           echo "${{needs.cypress-test.outputs.cypress_log_url}}"
           echo "log url of  build"

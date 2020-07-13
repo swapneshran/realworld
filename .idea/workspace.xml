@@ -20,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.github/workflows/build-test.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-83">
-              <caret line="24" column="49" lean-forward="true" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
+            <state relative-caret-position="258">
+              <caret line="121" column="75" selection-start-line="121" selection-start-column="75" selection-end-line="121" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -122,6 +122,7 @@
       <find>uses</find>
       <find>build log</find>
       <find>build_log_url</find>
+      <find>int-test</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -259,21 +260,7 @@
       <option name="presentableId" value="Default" />
       <updated>1594476874402</updated>
       <workItem from="1594476906740" duration="41371000" />
-      <workItem from="1594639635133" duration="10932000" />
-    </task>
-    <task id="LOCAL-00115" summary="unique id">
-      <created>1594549949950</created>
-      <option name="number" value="00115" />
-      <option name="presentableId" value="LOCAL-00115" />
-      <option name="project" value="LOCAL" />
-      <updated>1594549949950</updated>
-    </task>
-    <task id="LOCAL-00116" summary="correct syntax">
-      <created>1594550070939</created>
-      <option name="number" value="00116" />
-      <option name="presentableId" value="LOCAL-00116" />
-      <option name="project" value="LOCAL" />
-      <updated>1594550070939</updated>
+      <workItem from="1594639635133" duration="11168000" />
     </task>
     <task id="LOCAL-00117" summary="adding correct id for step output">
       <created>1594550233699</created>
@@ -604,11 +591,25 @@
       <option name="project" value="LOCAL" />
       <updated>1594672778410</updated>
     </task>
-    <option name="localTasksCounter" value="164" />
+    <task id="LOCAL-00164" summary="adding node set up back">
+      <created>1594672836702</created>
+      <option name="number" value="00164" />
+      <option name="presentableId" value="LOCAL-00164" />
+      <option name="project" value="LOCAL" />
+      <updated>1594672836702</updated>
+    </task>
+    <task id="LOCAL-00165" summary="merging to one step">
+      <created>1594672986310</created>
+      <option name="number" value="00165" />
+      <option name="presentableId" value="LOCAL-00165" />
+      <option name="project" value="LOCAL" />
+      <updated>1594672986310</updated>
+    </task>
+    <option name="localTasksCounter" value="166" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52303000" />
+    <option name="totallyTimeSpent" value="52539000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="6" />
@@ -734,8 +735,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adding changes for uses" />
-    <MESSAGE value="adding fix for build test" />
     <MESSAGE value="adding basic steps" />
     <MESSAGE value="adding one step" />
     <MESSAGE value="adding two more steps" />
@@ -759,7 +758,9 @@
     <MESSAGE value="adding  build step for build steps" />
     <MESSAGE value="adding node set up and build command" />
     <MESSAGE value="adding node set up and lint test" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding node set up and lint test" />
+    <MESSAGE value="adding node set up back" />
+    <MESSAGE value="merging to one step" />
+    <option name="LAST_COMMIT_MESSAGE" value="merging to one step" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package-lock.json">
@@ -956,8 +957,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.github/workflows/build-test.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-83">
-          <caret line="24" column="49" lean-forward="true" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
+        <state relative-caret-position="258">
+          <caret line="121" column="75" selection-start-line="121" selection-start-column="75" selection-end-line="121" selection-end-column="75" />
         </state>
       </provider>
     </entry>
