@@ -21,9 +21,9 @@ jobs:
     name: set up node and yarnv${{ matrix.node }}
     runs-on: ubuntu-latest
     outputs:
-      logurl_node_setup: ${{ steps.log_url_with_status.outputs.log_url }}
-      branch: ${{ steps.log_url_with_status.outputs.branch }}
-      status: {{ steps.log_url_with_status.outputs.status }}
+       logurl_node_setup: ${{ steps.log_url_with_status.outputs.log_url }}
+       branch: ${{ steps.log_url_with_status.outputs.branch }}
+       status: ${{ steps.log_url_with_status.outputs.status }}
     strategy:
       fail-fast: false
       matrix:
@@ -63,7 +63,7 @@ jobs:
     continue-on-error: true
     outputs:
       cypress_log_url: ${{ steps.cypress_log_url_with_status.outputs.log_url }}
-      status: {{ steps.cypress_log_url_with_status.outputs.status }}
+      status: ${{ steps.cypress_log_url_with_status.outputs.status }}
     steps:
       - uses: actions/checkout@v1
         with:
@@ -99,7 +99,7 @@ jobs:
     continue-on-error: false
     outputs:
       build_log_url: ${{ steps.build_log_url_with_status.outputs.log_url }}
-      status: {{ steps.build_log_url_with_status.outputs.status }}
+      status: ${{ steps.build_log_url_with_status.outputs.status }}
     steps:
       - uses: actions/checkout@v1
         with:
