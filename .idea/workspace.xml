@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80f2eeba-8ff4-4313-b578-2893992aaf97" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/__scripts__/send-message-team.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.github/workflows/build-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build-test.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -21,8 +20,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.github/workflows/build-test.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+            <state relative-caret-position="-83">
+              <caret line="24" column="49" lean-forward="true" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
             </state>
           </provider>
         </entry>
@@ -260,21 +259,7 @@
       <option name="presentableId" value="Default" />
       <updated>1594476874402</updated>
       <workItem from="1594476906740" duration="41371000" />
-      <workItem from="1594639635133" duration="10793000" />
-    </task>
-    <task id="LOCAL-00113" summary="adding with output">
-      <created>1594549579767</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1594549579767</updated>
-    </task>
-    <task id="LOCAL-00114" summary="adding the log url">
-      <created>1594549877663</created>
-      <option name="number" value="00114" />
-      <option name="presentableId" value="LOCAL-00114" />
-      <option name="project" value="LOCAL" />
-      <updated>1594549877663</updated>
+      <workItem from="1594639635133" duration="10932000" />
     </task>
     <task id="LOCAL-00115" summary="unique id">
       <created>1594549949950</created>
@@ -605,11 +590,25 @@
       <option name="project" value="LOCAL" />
       <updated>1594672394463</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="adding node set up and build command">
+      <created>1594672707418</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1594672707418</updated>
+    </task>
+    <task id="LOCAL-00163" summary="adding node set up and lint test">
+      <created>1594672778410</created>
+      <option name="number" value="00163" />
+      <option name="presentableId" value="LOCAL-00163" />
+      <option name="project" value="LOCAL" />
+      <updated>1594672778410</updated>
+    </task>
+    <option name="localTasksCounter" value="164" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52164000" />
+    <option name="totallyTimeSpent" value="52303000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="6" />
@@ -735,8 +734,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="correct sytax" />
-    <MESSAGE value="adding fetch" />
     <MESSAGE value="adding changes for uses" />
     <MESSAGE value="adding fix for build test" />
     <MESSAGE value="adding basic steps" />
@@ -760,7 +757,9 @@
     <MESSAGE value="adding -x flag again" />
     <MESSAGE value="adding different echo for verification" />
     <MESSAGE value="adding  build step for build steps" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding  build step for build steps" />
+    <MESSAGE value="adding node set up and build command" />
+    <MESSAGE value="adding node set up and lint test" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding node set up and lint test" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package-lock.json">
@@ -957,8 +956,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.github/workflows/build-test.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+        <state relative-caret-position="-83">
+          <caret line="24" column="49" lean-forward="true" selection-start-line="24" selection-start-column="49" selection-end-line="24" selection-end-column="49" />
         </state>
       </provider>
     </entry>
