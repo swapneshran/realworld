@@ -148,7 +148,7 @@ jobs:
           echo "log url of  cypress and status is ${{needs.cypress-test.outputs.cypress_log_url}} status is ${{needs.cypress-test.outputs.status}}"
           echo "log url of  build and status is ${{needs.build.outputs.build_log_url}} status is ${{needs.build.outputs.status}}"
 
-          ./scripts/send_message_teams.sh
+          ./__scripts__/send_message_teams.sh
 
 #          if [ ${{needs.node-setup-lint-check.outputs.status}} == 'failure' ]
 #          then
