@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-echo "setting up log url and branch name"
+echo "setting up log url and suite id  "
 
-RUN_ID=$(curl   GET \
+RUN_ID=$(curl  -X  GET \
                                     https://api.github.com/repos/swapneshran/realworld/actions/runs \
                                     -H "Authorization: token $GITHUB_TOKEN" \
                                     -H "Accept: application/vnd.github.v3+json" \
                                     | jq -r --arg GITHUB_RUN_ID "GITHUB_RUN_ID"  -c '.workflow_runs[] | select( .id | contains('$GITHUB_RUN_ID')) | .head_sha' \
                                     | sed 's/"//g')
-CHECK_SUITE_ID=$(curl GET \
+CHECK_SUITE_ID=$(curl -X GET \
                                       https://api.github.com/repos/swapneshran/realworld/commits/$RUN_ID/check-runs \
                                      -H "Authorization: token $GITHUB_TOKEN" \
                                      -H "Accept: application/vnd.github.antiope-preview+json" \

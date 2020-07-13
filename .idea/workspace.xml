@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80f2eeba-8ff4-4313-b578-2893992aaf97" name="Default Changelist" comment="correct indentaion">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pnpm-lock.yaml" afterDir="false" />
+    <list default="true" id="80f2eeba-8ff4-4313-b578-2893992aaf97" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.github/workflows/build-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build-test.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__scripts__/log_url.sh" beforeDir="false" afterPath="$PROJECT_DIR$/__scripts__/log_url.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,20 +18,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.github/workflows/build-test.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+            <state relative-caret-position="471">
+              <caret line="145" column="62" lean-forward="true" selection-start-line="145" selection-start-column="62" selection-end-line="145" selection-end-column="62" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/__scripts__/log_url.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            <state relative-caret-position="150">
+              <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -101,8 +98,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/__scripts__/hello-world.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="104" selection-start-line="16" selection-start-column="104" selection-end-line="16" selection-end-column="104" />
+            <state relative-caret-position="180">
+              <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -126,8 +123,8 @@
       <find>cypress-test</find>
       <find>sch</find>
       <find>build</find>
-      <find>uses</find>
       <find>env</find>
+      <find>uses</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -163,8 +160,8 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/13thJuly.yml" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/backup.yml" />
-        <option value="$PROJECT_DIR$/__scripts__/log_url.sh" />
         <option value="$PROJECT_DIR$/.github/workflows/build-test.yml" />
+        <option value="$PROJECT_DIR$/__scripts__/log_url.sh" />
       </list>
     </option>
   </component>
@@ -265,28 +262,7 @@
       <option name="presentableId" value="Default" />
       <updated>1594476874402</updated>
       <workItem from="1594476906740" duration="41371000" />
-      <workItem from="1594639635133" duration="9326000" />
-    </task>
-    <task id="LOCAL-00107" summary="adding test as a id">
-      <created>1594545641805</created>
-      <option name="number" value="00107" />
-      <option name="presentableId" value="LOCAL-00107" />
-      <option name="project" value="LOCAL" />
-      <updated>1594545641805</updated>
-    </task>
-    <task id="LOCAL-00108" summary="adding test as a id">
-      <created>1594546636786</created>
-      <option name="number" value="00108" />
-      <option name="presentableId" value="LOCAL-00108" />
-      <option name="project" value="LOCAL" />
-      <updated>1594546636786</updated>
-    </task>
-    <task id="LOCAL-00109" summary="remove id">
-      <created>1594546676536</created>
-      <option name="number" value="00109" />
-      <option name="presentableId" value="LOCAL-00109" />
-      <option name="project" value="LOCAL" />
-      <updated>1594546676536</updated>
+      <workItem from="1594639635133" duration="9812000" />
     </task>
     <task id="LOCAL-00110" summary="get check id">
       <created>1594547800987</created>
@@ -610,11 +586,32 @@
       <option name="project" value="LOCAL" />
       <updated>1594671053014</updated>
     </task>
-    <option name="localTasksCounter" value="156" />
+    <task id="LOCAL-00156" summary="correct synatax">
+      <created>1594671168386</created>
+      <option name="number" value="00156" />
+      <option name="presentableId" value="LOCAL-00156" />
+      <option name="project" value="LOCAL" />
+      <updated>1594671168386</updated>
+    </task>
+    <task id="LOCAL-00157" summary="removing double quoutes">
+      <created>1594671318635</created>
+      <option name="number" value="00157" />
+      <option name="presentableId" value="LOCAL-00157" />
+      <option name="project" value="LOCAL" />
+      <updated>1594671318635</updated>
+    </task>
+    <task id="LOCAL-00158" summary="adding the shell script in every step">
+      <created>1594671501773</created>
+      <option name="number" value="00158" />
+      <option name="presentableId" value="LOCAL-00158" />
+      <option name="project" value="LOCAL" />
+      <updated>1594671501773</updated>
+    </task>
+    <option name="localTasksCounter" value="159" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="50697000" />
+    <option name="totallyTimeSpent" value="51183000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="6" />
@@ -740,9 +737,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="branch name sed" />
-    <MESSAGE value="fragmentaion of commands" />
-    <MESSAGE value="correct indentation" />
     <MESSAGE value="adding exit code" />
     <MESSAGE value="adding new format for build test" />
     <MESSAGE value="indentation correction" />
@@ -765,7 +759,10 @@
     <MESSAGE value="adding git hub token" />
     <MESSAGE value="correct indentaion" />
     <MESSAGE value="adding correct indentation" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding correct indentation" />
+    <MESSAGE value="correct synatax" />
+    <MESSAGE value="removing double quoutes" />
+    <MESSAGE value="adding the shell script in every step" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding the shell script in every step" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package-lock.json">
@@ -905,13 +902,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__scripts__/hello-world.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="104" selection-start-line="16" selection-start-column="104" selection-end-line="16" selection-end-column="104" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/Notes">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -936,13 +926,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/__scripts__/log_url.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/13thJuly.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
@@ -959,8 +942,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.github/workflows/build-test.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+        <state relative-caret-position="471">
+          <caret line="145" column="62" lean-forward="true" selection-start-line="145" selection-start-column="62" selection-end-line="145" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__scripts__/hello-world.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="27" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__scripts__/log_url.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
         </state>
       </provider>
     </entry>

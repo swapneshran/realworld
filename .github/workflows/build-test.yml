@@ -144,7 +144,6 @@ jobs:
           echo "${{needs.build.outputs.build_log_url}}"
           # check which job is failed. then set the url to outputs
           ##  condition log which job is failed will put later
-
           # FAILED_STEP_URL= $(echo "${{needs.node-setup.outputs.logurl_node_setup}}")
           # echo "##[set-output name=log_url;]$FAILED_STEP_URL"
 
