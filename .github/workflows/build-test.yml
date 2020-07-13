@@ -26,13 +26,10 @@ jobs:
       matrix:
         node-version: [12.x]
     steps:
-      - name: Checkout Node ${{ matrix.node-version }}
-        if: ${{ success() }}
+      - name: forming log url
         uses: actions/checkout@v1
         with:
           fetch-depth: 0
-      - if: ${{ success() }}
-      - name: forming log url
         id: log_url
         run: |
           RUN_ID=$(curl -X  GET \
@@ -69,11 +66,8 @@ jobs:
     outputs:
       lint_log_url: ${{ steps.lint_log_url.outputs.log_url }}
     steps:
-      - name: checkout code
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - name: forming log url
+        uses: actions/checkout@v1
         id: lint_log_url
         run: |
           RUN_ID=$(curl -X  GET \
@@ -108,9 +102,6 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: forming log url
         id: cypress_log_url
         run: |
           RUN_ID=$(curl -X  GET \
@@ -148,10 +139,6 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: forming log url
-        id: build_log_url
         run: |
           #https://github.com/swapneshran/realworld/commit/$SHA_ID/checks/$SHA_ID2/logs
           #  https://api.github.com/repos/swapneshran/realworld/actions/runs
