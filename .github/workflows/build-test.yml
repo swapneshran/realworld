@@ -131,6 +131,13 @@ jobs:
     runs-on: ubuntu-latest
     needs: ['node-setup-lint-check','cypress-test','build']
     if : always()
+    env:
+      NODE_SETUP_LINT_URL: ${{needs.node-setup-lint-check.outputs.logurl_node_setup}}
+      NODE_SETUP_STATUS: ${{needs.node-setup-lint-check.outputs.status}}
+      CYPRESS_LOG_URL: ${{needs.cypress-test.outputs.cypress_log_url}}
+      CYPRESS_STATUS: ${{needs.cypress-test.outputs.status}}
+      BUILD_URL: ${{needs.build.outputs.build_log_url}}
+      BUILD_STATUS: ${{needs.build.outputs.status}}
     steps:
       - name: send message to teams
         id: send_message_to_team
@@ -146,23 +153,23 @@ jobs:
           then
              echo "node set up is failed"
              MESSAGE='node set up is failed. for the branch'
-             curl -H 'Content-Type: application/json' -d '{"text": $MESSAGE}' \
+             curl -H 'Content-Type: application/json' -d '{"text": "$MESSAGE"}' \
              https://webhook.site/ef9498ad-328a-4367-8d7d-3023268e7c00
           elif [ ${{needs.cypress-test.outputs.status}} == 'failure' ]
           then
              echo "cypress test is failed"
              MESSAGE='node set up is failed. for the branch'
-             curl -H 'Content-Type: application/json' -d '{"text": $MESSAGE}' \
+             curl -H 'Content-Type: application/json' -d '{"text": "$MESSAGE"}' \
              https://webhook.site/ef9498ad-328a-4367-8d7d-3023268e7c00
           elif [ ${{needs.build.outputs.status}} == 'failure' ]
           then
              echo "build is failed"
              MESSAGE='node set up is failed. for the branch'
-             curl -H 'Content-Type: application/json' -d '{"text": $MESSAGE}' \
+             curl -H 'Content-Type: application/json' -d '{"text": "$MESSAGE"}' \
              https://webhook.site/ef9498ad-328a-4367-8d7d-3023268e7c00
           else
              echo "all the jobs are successful"
-             curl -H 'Content-Type: application/json' -d '{"text": $MESSAGE}' \
+             curl -H 'Content-Type: application/json' -d '{"text": "$MESSAGE"}' \
                        https://webhook.site/ef9498ad-328a-4367-8d7d-3023268e7c00
           fi
 
