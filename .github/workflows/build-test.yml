@@ -34,7 +34,7 @@ jobs:
       - name: forming log url
         id: log_url
         env:
-          GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}'
+            GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}'
         run: |
           ./__scripts__/log_url.sh
 
