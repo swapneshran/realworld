@@ -1,7 +1,8 @@
 echo "Inside the script"
 
+echo $GITHUB_RUN_ID
 
- RUN_ID=$(curl -X  GET \
+RUN_ID=$(curl -X  GET \
                                     https://api.github.com/repos/swapneshran/realworld/actions/runs \
                                     -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' \
                                     -H "Accept: application/vnd.github.v3+json" \
