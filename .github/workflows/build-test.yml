@@ -16,7 +16,7 @@ on:
       - '**.md'
 
 jobs:
-  build:
+  install:
     runs-on: ${{ matrix.operating-system }}
     continue-on-error: true
     strategy:
@@ -28,15 +28,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-#      - name: Installing the packages
-#        run: |
-#          echo "##[set-output name=output;]$( npm install )"
-#        id: install
-#      - name: run test
-#        id: run_tests
-#        run: |
-#          echo "::set-output name=mix-test::$(npm test)\n"
-
       - name: forming log url
         id: log_url
         run: |
@@ -67,42 +58,69 @@ jobs:
           echo "##[set-output name=log_url;]$LOG_URL"
           echo "##[set-output name=branch;]$GITHUB_REF"
 
-
-        # unzip the tar and read it
-
         env:
           TEXT: ${{ steps.file_read.outputs.text }}
       - name: install and echo
         run: |
-          npm install $@ >> log.txt
-          if [  ${PIPESTATUS[0]} -gt 0 ]
-            then
-              exit 1
-            pwd
-          fi
+          npm install
         id: echo_output_js_failure
-
-      - name: build
-        run: |
-            npm run build $@ >>  log.txt
-            if [  ${PIPESTATUS[0]} -gt 0 ]
-              then
-                exit 1
-              pwd
-            fi
-        id: build
-        if: always()
+      #      - name: build
+      #        run: |
+      #            npm run build
+      #
+      #        id: build
+      #        if: always()
       - name: printing
         id: log_url_print
         run: |
-            echo "Log URL is : $LOG_URL"
-            echo "branch name is $BRANCH_NAME"
+          echo "Log URL is : $LOG_URL"
+          echo "branch name is $BRANCH_NAME"
         env:
-            LOG_URL: ${{ steps.log_url.outputs.log_url }}
-            BRANCH_NAME: ${{ steps.log_url.outputs.branch }}
+          LOG_URL: ${{ steps.log_url.outputs.log_url }}
+          BRANCH_NAME: ${{ steps.log_url.outputs.branch }}
         if: always()
 
 
+  build:
+    runs-on: ${{ matrix.operating-system }}
+    continue-on-error: true
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: echo hello world
+        id: echo_hello_world
+        run: |
+          echo "Hello World"
+      - name: echo hello world
+          id: echo_hello_world
+          run: |
+            npm build
+  lint:
+    runs-on: ${{ matrix.operating-system }}
+    continue-on-error: true
+    strategy:
+      matrix:
+        operating-system: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: echo hello world
+        id: echo_hello_world
+        run: |
+          echo "Hello World"
+      - name: echo hello world
+          id: echo_hello_world
+          run: |
+            npm run lint
 #https://github:com/swapneshran/realworld/commit/254d81d2b03a29791384145072b5d26548097451/checks/862475895/logs:
 
 
