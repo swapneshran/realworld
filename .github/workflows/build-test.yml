@@ -142,6 +142,19 @@ jobs:
           echo "log url of  build and status is ${{needs.build.outputs.build_log_url}} status is ${{needs.build.outputs.status}}"
 
 
+          if [ ${{needs.node-setup-lint-check.outputs.status}} == 'failure' ]
+          then
+             echo "node set up is failed"
+          elif [ ${{needs.cypress-test.outputs.status}} == 'failure' ]
+          then
+             echo "cypress set up is failed"
+          elif [ ${{needs.build.outputs.status}} == 'failure' ]
+          then
+             echo "build is failed"
+          else
+             echo "all the jobs are successful"
+          fi
+
           # check which job is failed. then set the url to outputs
           # condition log which job is failed will put later
           # FAILED_STEP_URL= $(echo "${{needs.node-setup.outputs.logurl_node_setup}}")
