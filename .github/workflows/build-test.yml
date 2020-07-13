@@ -146,17 +146,18 @@ jobs:
             elif [ $CYPRESS_STATUS == 'failure' ]
             then
                echo "cypress test is failed"
-               MESSAGE='node set up is failed. for the branch'
+               MESSAGE='cypress test cases are failing'
                curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
                 $WEBHOOK_URL
              elif [  $BUILD_STATUS == 'failure' ]
              then
                 echo "build is failed"
-                MESSAGE='node set up is failed. for the branch'
+                MESSAGE='Build is failed for the  branch'
                 curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
                 $WEBHOOK_URL
             else
                 echo "all the jobs are successful"
+                MESSAGE='All the jobs are passed'
                 curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}'  \
                           $WEBHOOK_URL
           fi
