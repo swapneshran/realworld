@@ -136,65 +136,45 @@ jobs:
         id: send_message_to_team
         run: |
           WEBHOOK_URL='https://webhook.site/ef9498ad-328a-4367-8d7d-3023268e7c00'
-
           NODE_SETUP_LINT_URL=${{needs.node-setup-lint-check.outputs.logurl_node_setup}}
           NODE_SETUP_STATUS=${{needs.node-setup-lint-check.outputs.status}}
           CYPRESS_LOG_URL=${{needs.cypress-test.outputs.cypress_log_url}}
-          CYPRESS_STATUS:=${{needs.cypress-test.outputs.status}}
+          CYPRESS_STATUS=${{needs.cypress-test.outputs.status}}
           BUILD_URL=${{needs.build.outputs.build_log_url}}
           BUILD_STATUS=${{needs.build.outputs.status}}
 
           if [ $NODE_SETUP_STATUS == 'failure' ]
             then
-               echo "node set up is failed"
+               echo "node set up and lint check is failed"
+
                MESSAGE='node set up is failed. for the branch'
+
                curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
                  $WEBHOOK_URL
+
             elif [ $CYPRESS_STATUS == 'failure' ]
             then
                echo "cypress test is failed"
+
                MESSAGE='cypress test cases are failing'
+
                curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
                 $WEBHOOK_URL
+
              elif [  $BUILD_STATUS == 'failure' ]
              then
                 echo "build is failed"
+
                 MESSAGE='Build is failed for the  branch'
+
                 curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
                 $WEBHOOK_URL
+
             else
                 echo "all the jobs are successful"
+
                 MESSAGE='All the jobs are passed'
+
                 curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}'  \
                           $WEBHOOK_URL
           fi
-
-
-          #          if [ ${{needs.node-setup-lint-check.outputs.status}} == 'failure' ]
-#          then
-#             echo "node set up is failed"
-#             MESSAGE='node set up is failed. for the branch'
-#             curl -H 'Content-Type: application/json' -d '{"text": "$MESSAGE"}' \
-#             https://webhook.site/ef9498ad-328a-4367-8d7d-3023268e7c00
-#          elif [ ${{needs.cypress-test.outputs.status}} == 'failure' ]
-#          then
-#             echo "cypress test is failed"
-#             MESSAGE='node set up is failed. for the branch'
-#             curl -H 'Content-Type: application/json' -d '{"text": "$MESSAGE"}' \
-#             https://webhook.site/ef9498ad-328a-4367-8d7d-3023268e7c00
-#          elif [ ${{needs.build.outputs.status}} == 'failure' ]
-#          then
-#             echo "build is failed"
-#             MESSAGE='node set up is failed. for the branch'
-#             curl -H 'Content-Type: application/json' -d '{"text": "$MESSAGE"}' \
-#             https://webhook.site/ef9498ad-328a-4367-8d7d-3023268e7c00
-#          else
-#             echo "all the jobs are successful"
-#             curl -H 'Content-Type: application/json' -d '{"text": "$MESSAGE"}' \
-#                       https://webhook.site/ef9498ad-328a-4367-8d7d-3023268e7c00
-#          fi
-
-          # check which job is failed. then set the url to outputs
-          # condition log which job is failed will put later
-          # FAILED_STEP_URL= $(echo "${{needs.node-setup.outputs.logurl_node_setup}}")
-          # echo "##[set-output name=log_url;]$FAILED_STEP_URL"
