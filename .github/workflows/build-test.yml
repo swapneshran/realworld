@@ -154,7 +154,7 @@ jobs:
             then
                echo 'node set up and lint check is failed for branch '
 
-               MESSAGE='node set up is failed. for the branch "$BRANCH_NAME". Log can be found <a>  \
+               MESSAGE='node set up is failed. for the branch '"$BRANCH_NAME"'. Log can be found <a>  \
                  href='"$NODE_SETUP_LINT_URL"'> Log Url </a> \
                 '
 
@@ -163,7 +163,7 @@ jobs:
 
             elif [ $CYPRESS_STATUS == 'failure' ]
             then
-               echo "Cypress test is failed for the branch "$BRANCH_NAME". Log can be found <a>  \
+               echo "Cypress test is failed for the branch '"$BRANCH_NAME"'. Log can be found <a>  \
                                         href='"$CYPRESS_LOG_URL"'> Log Url </a>"
 
                MESSAGE='cypress test cases failed for branch '
@@ -173,7 +173,7 @@ jobs:
 
              elif [  $BUILD_STATUS == 'failure' ]
              then
-                echo "build is failed for the branch "$BRANCH_NAME". Log can be found <a>  \
+                echo "build is failed for the branch '"$BRANCH_NAME"'. Log can be found <a>  \
                                                                               href='"$BUILD_URL"'> Log Url </a>"
 
                 MESSAGE='Build is failed for the  branch for branch'
@@ -184,7 +184,7 @@ jobs:
             else
                 echo "All the jobs are successful for branch"
 
-                MESSAGE='All the jobs are passed for the branch "$BRANCH_NAME".'
+                MESSAGE="All the jobs are passed for the branch '"$BRANCH_NAME"'."
 
                 curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}'  \
                           $WEBHOOK_URL
