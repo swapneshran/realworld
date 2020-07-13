@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="80f2eeba-8ff4-4313-b578-2893992aaf97" name="Default Changelist" comment="adding urls">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/build-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/build-test.yml" afterDir="false" />
+    <list default="true" id="80f2eeba-8ff4-4313-b578-2893992aaf97" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/__scripts__/log_url.sh" beforeDir="false" afterPath="$PROJECT_DIR$/__scripts__/log_url.sh" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -17,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.github/workflows/build-test.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="180" column="79" selection-start-line="180" selection-start-column="79" selection-end-line="180" selection-end-column="79" />
+            <state relative-caret-position="143">
+              <caret line="150" column="23" selection-start-line="150" selection-start-column="23" selection-end-line="150" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -38,8 +38,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/curl_test.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+            <state relative-caret-position="165">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -70,8 +70,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/13thJuly.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="384">
-              <caret line="192" column="288" lean-forward="true" selection-start-line="192" selection-start-column="21" selection-end-line="192" selection-end-column="288" />
+            <state relative-caret-position="117">
+              <caret line="45" column="44" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -90,11 +90,11 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/__scripts__/log_url.sh">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
+            <state relative-caret-position="255">
+              <caret line="17" column="83" selection-start-line="17" selection-start-column="83" selection-end-line="17" selection-end-column="83" />
             </state>
           </provider>
         </entry>
@@ -103,7 +103,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>logs</find>
       <find>runner</find>
       <find>check_su</find>
       <find>{</find>
@@ -111,7 +110,6 @@
       <find>$CHECK_SUITE_ID</find>
       <find>$RUN_ID</find>
       <find>log_url</find>
-      <find>branch</find>
       <find>node-setup</find>
       <find>lint-test</find>
       <find>cypress-test</find>
@@ -133,6 +131,8 @@
       <find>NODE_SETUP_STATUS</find>
       <find>CYPRESS_LOG_URL</find>
       <find>CYPRESS_STATUS</find>
+      <find>$BRANCH_NAME</find>
+      <find>branch</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -169,10 +169,10 @@
         <option value="$APPLICATION_CONFIG_DIR$/scratches/13thJuly.yml" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/backup.yml" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/14thJuly.yaml" />
-        <option value="$PROJECT_DIR$/__scripts__/log_url.sh" />
         <option value="$PROJECT_DIR$/__scripts__/send_message_teams.sh" />
         <option value="$APPLICATION_CONFIG_DIR$/scratches/curl_test.sh" />
         <option value="$PROJECT_DIR$/.github/workflows/build-test.yml" />
+        <option value="$PROJECT_DIR$/__scripts__/log_url.sh" />
       </list>
     </option>
   </component>
@@ -276,28 +276,7 @@
       <option name="presentableId" value="Default" />
       <updated>1594476874402</updated>
       <workItem from="1594476906740" duration="41371000" />
-      <workItem from="1594639635133" duration="18158000" />
-    </task>
-    <task id="LOCAL-00137" summary="adding fetch">
-      <created>1594667875309</created>
-      <option name="number" value="00137" />
-      <option name="presentableId" value="LOCAL-00137" />
-      <option name="project" value="LOCAL" />
-      <updated>1594667875309</updated>
-    </task>
-    <task id="LOCAL-00138" summary="adding changes for uses">
-      <created>1594668052449</created>
-      <option name="number" value="00138" />
-      <option name="presentableId" value="LOCAL-00138" />
-      <option name="project" value="LOCAL" />
-      <updated>1594668052449</updated>
-    </task>
-    <task id="LOCAL-00139" summary="adding fix for build test">
-      <created>1594668152769</created>
-      <option name="number" value="00139" />
-      <option name="presentableId" value="LOCAL-00139" />
-      <option name="project" value="LOCAL" />
-      <updated>1594668152769</updated>
+      <workItem from="1594639635133" duration="19004000" />
     </task>
     <task id="LOCAL-00140" summary="adding basic steps">
       <created>1594668254115</created>
@@ -621,11 +600,32 @@
       <option name="project" value="LOCAL" />
       <updated>1594680579381</updated>
     </task>
-    <option name="localTasksCounter" value="186" />
+    <task id="LOCAL-00186" summary="adding urls">
+      <created>1594681484505</created>
+      <option name="number" value="00186" />
+      <option name="presentableId" value="LOCAL-00186" />
+      <option name="project" value="LOCAL" />
+      <updated>1594681484505</updated>
+    </task>
+    <task id="LOCAL-00187" summary="exiting temporarily">
+      <created>1594682003044</created>
+      <option name="number" value="00187" />
+      <option name="presentableId" value="LOCAL-00187" />
+      <option name="project" value="LOCAL" />
+      <updated>1594682003044</updated>
+    </task>
+    <task id="LOCAL-00188" summary="adding branch name fix">
+      <created>1594682266780</created>
+      <option name="number" value="00188" />
+      <option name="presentableId" value="LOCAL-00188" />
+      <option name="project" value="LOCAL" />
+      <updated>1594682266780</updated>
+    </task>
+    <option name="localTasksCounter" value="189" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59529000" />
+    <option name="totallyTimeSpent" value="60375000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="817" extended-state="6" />
@@ -647,11 +647,11 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.26068965" />
+      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.26068965" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Version Control" order="11" visible="true" weight="0.32827586" />
+      <window_info anchor="bottom" id="Version Control" order="11" weight="0.32827586" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -751,9 +751,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="adding -x flag again" />
-    <MESSAGE value="adding different echo for verification" />
-    <MESSAGE value="adding  build step for build steps" />
     <MESSAGE value="adding node set up and build command" />
     <MESSAGE value="adding node set up and lint test" />
     <MESSAGE value="adding node set up back" />
@@ -776,7 +773,10 @@
     <MESSAGE value="adding message in else condition" />
     <MESSAGE value="adding variables" />
     <MESSAGE value="correct syntax" />
-    <option name="LAST_COMMIT_MESSAGE" value="correct syntax" />
+    <MESSAGE value="adding urls" />
+    <MESSAGE value="exiting temporarily" />
+    <MESSAGE value="adding branch name fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding branch name fix" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/package-lock.json">
@@ -944,16 +944,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.github/workflows/index.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/__scripts__/log_url.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" lean-forward="true" selection-start-line="19" selection-end-line="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/__scripts__/send-message-team.sh">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -961,13 +951,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/13thJuly.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="192" column="288" lean-forward="true" selection-start-line="192" selection-start-column="21" selection-end-line="192" selection-end-column="288" />
         </state>
       </provider>
     </entry>
@@ -985,17 +968,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.github/workflows/index.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/curl_test.sh">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="165">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.github/workflows/build-test.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="180" column="79" selection-start-line="180" selection-start-column="79" selection-end-line="180" selection-end-column="79" />
+        <state relative-caret-position="143">
+          <caret line="150" column="23" selection-start-line="150" selection-start-column="23" selection-end-line="150" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/13thJuly.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="45" column="44" selection-start-line="45" selection-start-column="44" selection-end-line="45" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/__scripts__/log_url.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="83" selection-start-line="17" selection-start-column="83" selection-end-line="17" selection-end-column="83" />
         </state>
       </provider>
     </entry>

@@ -15,7 +15,7 @@ CHECK_SUITE_ID=$(curl -X GET \
                                       | jq '.check_runs[0].id')
 LOG_URL=("https://github.com/swapneshran/realworld/commit/$RUN_ID/checks/$CHECK_SUITE_ID/logs")
 echo $LOG_URL
-BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\// /g')
+BRANCH_NAME=$(echo $GITHUB_REF | sed 's/refs\/heads\// /g' | sed 's/[[:blank:]]//g')
 echo "Branch name $BRANCH_NAME"
 echo "##[set-output name=log_url;]$LOG_URL"
 echo "##[set-output name=branch;]$BRANCH_NAME"
