@@ -42,7 +42,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - run: node -v
+      - run: |
+         echo "check for node"
+         node -v
 
   lint-test:
     runs-on: ubuntu-latest
@@ -68,6 +70,7 @@ jobs:
       - name: running the lint
         id: run_lint
         run: |
+          echo "running lint"
           npm run lint
 
  # cypress test
@@ -118,10 +121,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
             ./__scripts__/log_url.sh
-      - name: running cypress test
+      - name: runninng build
         if: ${{ success() }}
         run: |
-          echo "inside cypress test"
+          echo "inside build"
+          npm run build
 
 #
   msteam:
