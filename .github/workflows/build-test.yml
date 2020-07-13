@@ -54,7 +54,7 @@ jobs:
         run: |
           echo "setting status of node set up"
           echo ${{ job.status }}
-          STATUS = ${{ job.status }}
+          STATUS=${{ job.status }}
           echo "##[set-output name=status;]$STATUS"
             ./__scripts__/log_url.sh
   cypress-test:
@@ -140,6 +140,8 @@ jobs:
           echo "log url of  checkoutput and status is ${{needs.node-setup-lint-check.outputs.logurl_node_setup}} status is ${{needs.node-setup-lint-check.outputs.status}}"
           echo "log url of  cypress and status is ${{needs.cypress-test.outputs.cypress_log_url}} status is ${{needs.cypress-test.outputs.status}}"
           echo "log url of  build and status is ${{needs.build.outputs.build_log_url}} status is ${{needs.build.outputs.status}}"
+
+
           # check which job is failed. then set the url to outputs
           # condition log which job is failed will put later
           # FAILED_STEP_URL= $(echo "${{needs.node-setup.outputs.logurl_node_setup}}")
