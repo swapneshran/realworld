@@ -165,10 +165,11 @@ jobs:
 
             elif [ $CYPRESS_STATUS == 'failure' ]
             then
-               echo "Cypress test is failed for the branch '"$BRANCH_NAME"'. Log can be found <a>  \
-                                        href='"$CYPRESS_LOG_URL"'> Log Url </a>"
+               echo 'Cypress test is failed for the branch '"$BRANCH_NAME"'. Log can be found <a>  \
+                                        href='"$CYPRESS_LOG_URL"'> Log Url </a>'
 
-               MESSAGE='cypress test cases failed for branch '
+               MESSAGE='Cypress test is failed for the branch '"$BRANCH_NAME"'. Log can be found <a>  \
+                                                                href='"$CYPRESS_LOG_URL"'> Log Url </a>'
 
                curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
                 $WEBHOOK_URL
@@ -178,7 +179,8 @@ jobs:
                 echo "build is failed for the branch '"$BRANCH_NAME"'. Log can be found <a>  \
                                                                               href='"$BUILD_URL"'> Log Url </a>"
 
-                MESSAGE='Build is failed for the  branch for branch'
+                MESSAGE='build is failed for the branch '"$BRANCH_NAME"'. Log can be found <a>  \
+                                                                                                       href='"$BUILD_URL"'> Log Url </a>'
 
                 curl -H 'Content-Type: application/json' -d '{"text": '"$MESSAGE"'}' \
                 $WEBHOOK_URL
