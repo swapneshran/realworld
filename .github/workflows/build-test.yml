@@ -24,6 +24,7 @@ jobs:
        logurl_node_setup: ${{ steps.log_url_with_status.outputs.log_url }}
        branch: ${{ steps.log_url_with_status.outputs.branch }}
        status: ${{ steps.log_url_with_status.outputs.status }}
+       lint_output: ${{ steps.log_url_with_status.outputs.lint_output }}
     strategy:
       fail-fast: false
       matrix:
@@ -49,7 +50,7 @@ jobs:
         run: |
             npm i
             echo "running lint"
-            npm run lint
+            echo "##[set-output name=lint_output;]$(npm run lint)"
       - name: forming log url
         id: log_url_with_status
         if: always()
@@ -139,6 +140,7 @@ jobs:
       - name: send message to teams
         id: send_message_to_team
         run: |
+          echo ${{needs.node-setup-lint-check.outputs.lint_output}}
           WEBHOOK_URL='https://webhook.site/ef9498ad-328a-4367-8d7d-3023268e7c00'
           NODE_SETUP_LINT_URL=${{needs.node-setup-lint-check.outputs.logurl_node_setup}}
           NODE_SETUP_STATUS=${{needs.node-setup-lint-check.outputs.status}}
