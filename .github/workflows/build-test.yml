@@ -24,7 +24,7 @@ jobs:
        logurl_node_setup: ${{ steps.log_url_with_status.outputs.log_url }}
        branch: ${{ steps.log_url_with_status.outputs.branch }}
        status: ${{ steps.log_url_with_status.outputs.status }}
-       lint_output: ${{ steps.log_url_with_status.outputs.lint_output }}
+       lint_output: ${{ steps.run_lint.outputs.lint_output }}
     strategy:
       fail-fast: false
       matrix:
