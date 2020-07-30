@@ -1,6 +1,6 @@
 import * as api from 'api.js';
 
-export function post(req, res) {
+expo function post(req, res) {
 	const user = req.body;
 
 	api.put('user', { user }, req.session.user && req.session.user.token).then(response => {

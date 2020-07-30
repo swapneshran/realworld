@@ -10,7 +10,8 @@
     "cy:run": "cypress run",
     "cy:open": "cypress open",
     "test": "(npm run build && export PORT=3100 && node __sapper__/build) & cypress run",
-    "deploy": "make deploy"
+    "deploy": "make deploy",
+    "lint": "eslint . --ext .js,.svelte --fix"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -23,6 +24,7 @@
     "sirv": "^0.4.2"
   },
   "devDependencies": {
+    "@actions/core": "^1.2.4",
     "@babel/core": "^7.1.5",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
@@ -31,6 +33,12 @@
     "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-node-resolve": "^8.0.1",
     "@rollup/plugin-replace": "^2.3.3",
+    "eslint": "*",
+    "eslint-plugin-import": "*",
+    "eslint-plugin-node": "*",
+    "eslint-plugin-promise": "*",
+    "eslint-plugin-standard": "*",
+    "eslint-plugin-svelte3": "*",
     "chokidar": "^3.0.1",
     "cypress": "^3.3.1",
     "npm-run-all": "^4.1.2",
