@@ -10,4 +10,4 @@ jobs:
       - uses: hallee/eslint-action@1.0.3
         with:
           repo-token: ${{secrets.GITHUB_TOKEN}}
-          source-root: optional-sub-dir
+          source-root: src
